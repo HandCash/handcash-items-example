@@ -1,0 +1,48 @@
+{
+  "name": "handcash-ordinals-minter",
+  "version": "1.0.0",
+  "description": "A collection of scripts to inscribe 1Sat Ordinals using HandCash.",
+  "main": "src/scripts/CreateMintOrder.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "getMintOrder": "tsc && node --no-warnings dist/scripts/createItems/GetMintOrder.js",
+    "createMintCollectionOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateMintCollectionOrder.js",
+    "createMintCollectionItemsOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateMintCollectionItemsOrder.js",
+    "addCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/AddCollectionItems.js",
+    "inscribeItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeItemsInBatches.js",
+    "createCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateCatalog.js",
+    "airdropItems": "tsc && node --no-warnings dist/scripts/airdrop/AirdropItems.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HandCash/handcash-ordinals-minter.git"
+  },
+  "keywords": [
+    "ordinals",
+    "nft",
+    "bsv",
+    "handcash"
+  ],
+  "author": "HandCash",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HandCash/handcash-ordinals-minter/issues"
+  },
+  "homepage": "https://github.com/HandCash/handcash-ordinals-minter#readme",
+  "devDependencies": {
+    "@types/node": "^20.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "eslint": "^8.40.0",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "bsv-wasm": "^2.0.1",
+    "commander": "^10.0.1",
+    "dotenv": "^16.1.4",
+    "nanoid": "^4.0.2",
+    "p-limit": "^4.0.0"
+  }
+}
