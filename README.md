@@ -10,46 +10,61 @@ npm install
 
 ### Set up project variables
 
-Paste your credentials in the `src/Settings.ts` file:
-```ts
-export const config = {
-    appId: 'YOUR_APP_ID',
-    appSecret: 'YOUR_APP_SECRET',
-    authToken: 'YOUR_AUTH_TOKEN',
-}
-
+Paste your credentials in the `.env` file:
+```
+HANDCASH_APP_ID=<your-app-id>
+HANDCASH_AUTH_TOKEN=<your-business-wallet-auth-token>
 ```
 
 ## Create a collection
 
-### 1. Create a mint collection order
+### 1. Create an inscribe collection order
 
 ```bash
-npm run createMintCollectionOrder
+npm run createInscribeCollectionOrder
 ```
 
 ### 2. Process the inscription in batches
 
 ```bash
-npm run inscribeItems <order_id>
+npm run inscribeItems <create_collection_order_id>
 ```
 
 ## Create collection items
 
-### 1. Create a mint items order
+### 1. Create an inscribe items order
 
 ```bash
-npm run createMintCollectionItemsOrder <collection_id>
+npm run createInscribeCollectionItemsOrder <collection_id>
 ```
 
 ### 2. Add the collection items to the order
 
 ```bash
-npm run addCollectionItems <order_id>
+npm run addCollectionItems <create_items_order_id>
 ```
 
 ### 3. Process the inscription in batches
 
 ```bash
-npm run inscribeItems <order_id>
+npm run inscribeItems <create_items_order_id>
+```
+
+## Aidrop a collection
+
+```bash
+npm run airdropItems <create_items_order_id>
+```
+
+## Create a catalog of packs
+
+```bash
+npm run createCatalog <create_items_order_id>
+```
+
+## Debug
+
+### Get inscription order info by order ID
+```bash
+npm run getInscriptionOrder <order_id>
 ```

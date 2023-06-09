@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "getMintOrder": "tsc && node --no-warnings dist/scripts/createItems/GetMintOrder.js",
-    "createMintCollectionOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateMintCollectionOrder.js",
-    "createMintCollectionItemsOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateMintCollectionItemsOrder.js",
+    "getInscriptionOrder": "tsc && node --no-warnings dist/scripts/createItems/GetInscriptionOrder.js",
+    "createInscribeCollectionOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateInscribeCollectionOrder.js",
+    "createMintCollectionItemsOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateInscribeCollectionItemsOrder.js",
     "addCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/AddCollectionItems.js",
     "inscribeItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeItemsInBatches.js",
     "createCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateCatalog.js",
