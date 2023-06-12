@@ -8,7 +8,6 @@ async function main() {
         .addArgument(new Argument('<orderId>', 'The id of the mint order to retrieve'))
         .parse(process.argv)
         .args;
-
     const mintParameters = await ComponentsFactory.getItemsLoader().loadItems();
     console.log(JSON.stringify(mintParameters.items));
 

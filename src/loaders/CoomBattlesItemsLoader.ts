@@ -24,10 +24,10 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         return {
             appId: handCashConfig.appId,
             title: 'Coom Battles Starter Packs',
-            description: 'Coom Battles is a collectible card game where you can battle your friends!',
+            description: 'Champions of Otherworldly Magic limited edition trading cards',
             bannerUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685260727/items/Banner_chhigc.jpg',
-            itemsAnimationGifUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685260756/items/collection_gkg3y5.gif',
-            totalCollectionItems: 10,
+            itemsAnimationGifUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686453704/items/151_gif_ndvbqb_pqbmsf.gif',
+            totalCollectionItems: 151,
             selectablePacks: [
                 {
                     name: '1x Pack',
@@ -60,11 +60,11 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         return {
             items,
             collection: {
-                name: 'Coom Battles',
-                description: 'Coom Battles is a collectible card game where you can battle your friends and earn BCH!',
+                name: 'CoOM Battles · First Edition',
+                description: 'Champions of Otherworldly Magic limited edition trading cards',
                 mediaDetails: {
                     image: {
-                        url: 'https://res.cloudinary.com/handcash/image/upload/v1685119108/Final_Icon_t9fo6m.png',
+                        url: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686129013/items/Final_Icon_t9fo6m_cqt3s9_ags7cl.png',
                         contentType: 'image/png',
                     },
                 },
@@ -167,6 +167,8 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
     }
 
     loadAirdropDestinations(): Promise<String[]> {
-        return Promise.resolve([]);
+        const data = JSON.parse(fs.readFileSync(`${this.folderPath}/users.json`, 'utf8'));
+        const users = data.map((item: any) => ({email: item.email, handle: item.handle}));
+        return Promise.resolve(users.map((user: any) => user.handle));
     }
 }

@@ -163,7 +163,7 @@ export default class HandCashService {
     }
 
     async getInventory() {
-        const requestParameters = this.getRequestParams('GET', `/v3/wallet/items`);
+        const requestParameters = this.getRequestParams('GET', `/v3/wallet/items/inventory`);
         return HandCashService.handleRequest<Many<Item>>(requestParameters, new Error().stack);
     }
 

@@ -16,7 +16,7 @@ async function main() {
     const order = await handCashService.getCreateItemsOrder(orderId);
     const items = mintParameters.items.slice(order.items.length);
     const limit = pLimit(1);
-    console.log(`⏳  Adding ${items.length} items to mint order ${orderId}...`);
+    console.log(`- ⏳  Adding ${items.length} items to mint order ${orderId}...`);
     await Promise.all(items.map((itemParams) => limit(() => addCollectionItem(orderId, itemParams))));
     console.log('- ✅  Items added to mint order');
 
@@ -32,6 +32,7 @@ async function addCollectionItem(orderId: string, mintItem: CreateItemParameters
     const {imageUrl} = await imageService.uploadImage(mintItem.item.mediaDetails.image.url);
     mintItem.item.mediaDetails.image.url = imageUrl;
     const items = new Array(mintItem.quantity).fill(0).map(() => mintItem.item);
+    console.log(`- ⏳  Adding ${mintItem.quantity} items named ${mintItem.item.name}...`);
     return handCashService.addMintOrderItems({orderId, items, itemCreationOrderType: 'collectionItem'});
 }
 

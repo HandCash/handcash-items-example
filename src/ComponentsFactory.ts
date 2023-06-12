@@ -16,14 +16,14 @@ export class ComponentsFactory {
     }
 
     static getItemsLoader(): AbstractItemsLoader {
+        return new CoomBattlesItemsLoader({
+            folderPath: './assets/coom',
+        });
         return new DummyItemsLoader({
             folderPath: './assets/dummy',
         });
         return new HandCashItemsLoader({
             folderPath: './assets/handcash_test',
-        });
-        return new CoomBattlesItemsLoader({
-            folderPath: './assets/coom_test',
         });
     }
 }
