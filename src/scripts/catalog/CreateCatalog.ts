@@ -24,18 +24,26 @@ async function createCatalog(): Promise<Catalog> {
 }
 
 async function addItemsToCatalog(catalogId: string, createItemsOrderId: string) {
+    const batchSize = 50;
     const order = await handCashService.getCreateItemsOrder(createItemsOrderId);
     let totalItemsLeft = order.items.length;
+    let totalItems = order.items.length;
     process.stdout.write(`⏳ Adding items to catalog (0%)`);
-    for (const item of order.items) {
+    while (totalItemsLeft > 0) {
+        const destinations = new Array(Math.min(totalItemsLeft, batchSize))
+            .fill(0)
+            .reduce((prev, _, index) => {
+                prev.push(order.items.pop()!.origin);
+                return prev;
+            }, []);
         await handCashService.addItemsCatalog({
             itemCatalogId: catalogId,
-            itemOrigins: [item.origin!],
+            itemOrigins: destinations,
         });
-        totalItemsLeft--;
+        totalItemsLeft = order.items.length;
         process.stdout.clearLine(0);
         process.stdout.cursorTo(0);
-        process.stdout.write(`- ⏳ Adding items to catalog (${((order.items.length - totalItemsLeft) / order.items.length * 100).toFixed(1)})%`);
+        process.stdout.write(`- ⏳ Adding items to catalog (${((totalItems - totalItemsLeft) / totalItems * 100).toFixed(1)})%`);
     }
     console.log('\n');
     return order.items.length;

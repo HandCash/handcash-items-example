@@ -30,7 +30,7 @@ export class DummyItemsLoader extends AbstractItemsLoader {
                 description: 'A mysterious collection with mysterious items',
                 mediaDetails: {
                     image: {
-                        url: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686129067/items/HeroImage_MysteryBox_wq5iz2.jpg',
+                        url: 'https://res.cloudinary.com/handcash-iae/image/upload/v1687295380/items/HeroImage_MysteryBox_wq5iz2_lceykv.jpg',
                         contentType: 'image/png',
                     },
                 },
@@ -93,8 +93,15 @@ export class DummyItemsLoader extends AbstractItemsLoader {
                     name: '10x Pack',
                     description: 'Not a real pack',
                     imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138982/items/10_gv2jmo.png',
-                    price: 0.07,
+                    price: 0.09,
                     units: 10,
+                },
+                {
+                    name: '25x Pack',
+                    description: 'Not a real pack',
+                    imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138982/items/10_gv2jmo.png',
+                    price: 0.22,
+                    units: 25,
                 },
             ],
         };

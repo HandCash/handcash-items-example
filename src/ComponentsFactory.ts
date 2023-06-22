@@ -22,6 +22,9 @@ export class ComponentsFactory {
         return new DummyItemsLoader({
             folderPath: './assets/dummy',
         });
+        return new DummyItemsLoader({
+            folderPath: './assets/dummy',
+        });
         return new HandCashItemsLoader({
             folderPath: './assets/handcash_test',
         });

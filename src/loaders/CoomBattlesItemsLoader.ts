@@ -31,24 +31,24 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
             selectablePacks: [
                 {
                     name: '1x Pack',
-                    description: '',
+                    description: 'Includes 1 random card',
                     imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138930/items/1_gobyea.png',
-                    price: 0.02,
+                    price: 3,
                     units: 1,
                 },
                 {
                     name: '10x Pack',
-                    description: '',
+                    description: 'Includes 10 random cards',
                     imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138982/items/10_gv2jmo.png',
-                    price: 0.10,
+                    price: 28,
                     units: 10,
                 },
                 {
-                    name: '100x Pack',
-                    description: '',
-                    imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138964/items/100_wvbfi3.png',
-                    price: 0.90,
-                    units: 100,
+                    name: '25x Pack',
+                    description: 'Includes 25 random cards',
+                    imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1687358038/items/25-pack_syrigb.png',
+                    price: 67,
+                    units: 25,
                 }
             ],
         };
