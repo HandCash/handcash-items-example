@@ -63,8 +63,7 @@ export type CreateItemsOrder = {
         transactionId: string;
         isConfirmed: boolean;
     }
-    pendingBatches?: number;
-    inscriptionBatches?: object[];
+    pendingInscriptions: number;
 }
 
 export type CreateCatalogParameters = {
