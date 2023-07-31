@@ -1,13 +1,6 @@
 import {PrivateKey} from 'bsv-wasm';
 import {nanoid} from 'nanoid';
-import {
-    NewCreateItemsOrder,
-    CreateItemsOrder,
-    CreateItemsCollection,
-    CreateItemsCollectionItem,
-    OrderType,
-    CreateCatalogParameters, Catalog, Many, Item
-} from "./Types.js";
+import {Catalog, CreateCatalogParameters, CreateItemsOrder} from "./Types.js";
 import {ApiError, HttpBody, HttpMethod, QueryParams, RequestParams} from "../Types.js";
 
 type Params = {
@@ -15,12 +8,6 @@ type Params = {
     appId: string;
     baseApiEndpoint: string;
 };
-
-type AddMintOrderItemsParams = {
-    orderId: string;
-    items: CreateItemsCollectionItem[] | CreateItemsCollection[];
-    itemCreationOrderType: OrderType;
-}
 
 export default class HandCashService {
     privateKey: PrivateKey | undefined;
@@ -86,7 +73,7 @@ export default class HandCashService {
 
     static getEncodedEndpoint(endpoint: string, queryParameters: QueryParams) {
         const searchParams = new URLSearchParams(queryParameters);
-        return endpoint + searchParams.toString();
+        return endpoint + (searchParams.size > 0 ? '?' + searchParams.toString() : '');
     }
 
     static getRequestSignature(
@@ -117,33 +104,8 @@ export default class HandCashService {
         return `${method}\n${endpoint}\n${timestamp}\n${serializedBody}${nonce ? `\n${nonce}` : ''}`;
     }
 
-    async createMintOrder(params: NewCreateItemsOrder) {
-        const requestParameters = this.getRequestParams('POST', `/v3/itemCreationOrder`, params);
-        return HandCashService.handleRequest<CreateItemsOrder>(requestParameters, new Error().stack);
-    }
-
     async getCreateItemsOrder(orderId: string) {
         const requestParameters = this.getRequestParams('GET', `/v3/itemCreationOrder/${orderId}`);
-        return HandCashService.handleRequest<CreateItemsOrder>(requestParameters, new Error().stack);
-    }
-
-    async addMintOrderItems({orderId, items, itemCreationOrderType}: AddMintOrderItemsParams) {
-        const requestParameters = this.getRequestParams('POST', `/v3/itemCreationOrder/${orderId}/add`, {
-            items,
-            itemCreationOrderType
-        });
-        return HandCashService.handleRequest<CreateItemsOrder>(requestParameters, new Error().stack);
-    }
-
-    async commitMintOrder(orderId: string) {
-        const requestParameters = this.getRequestParams('POST', `/v3/itemCreationOrder/${orderId}/commit`);
-        return HandCashService.handleRequest<CreateItemsOrder>(requestParameters, new Error().stack);
-    }
-
-    async mintNextMintBatch(orderId: string) {
-        const requestParameters = this.getRequestParams('POST', `/v3/itemCreationOrder/createBatch`, {
-            itemCreationOrderId: orderId,
-        });
         return HandCashService.handleRequest<CreateItemsOrder>(requestParameters, new Error().stack);
     }
 
@@ -159,16 +121,6 @@ export default class HandCashService {
 
     async addItemsCatalog(params: { itemOrigins: string[]; itemCatalogId: string; }) {
         const requestParameters = this.getRequestParams('POST', `/v3/itemCatalog/add`, params);
-        return HandCashService.handleRequest<Catalog>(requestParameters, new Error().stack);
-    }
-
-    async getInventory() {
-        const requestParameters = this.getRequestParams('GET', `/v3/wallet/items/inventory`);
-        return HandCashService.handleRequest<Many<Item>>(requestParameters, new Error().stack);
-    }
-
-    async transferItems(params: { destinationsWithOrigins: { destination: string; origins: string[]; }[] }) {
-        const requestParameters = this.getRequestParams('POST', `/v3/wallet/items/send`, params);
         return HandCashService.handleRequest<Catalog>(requestParameters, new Error().stack);
     }
 

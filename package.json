@@ -7,12 +7,11 @@
   "scripts": {
     "build": "tsc",
     "getInscriptionOrder": "tsc && node --no-warnings dist/scripts/createItems/GetInscriptionOrder.js",
-    "createInscribeCollectionOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateInscribeCollectionOrder.js",
-    "createMintCollectionItemsOrder": "tsc && node --no-warnings dist/scripts/createItems/CreateInscribeCollectionItemsOrder.js",
-    "addCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/AddCollectionItems.js",
-    "inscribeItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeItemsInBatches.js",
+    "inscribeCollection": "tsc && node --no-warnings dist/scripts/createItems/InscribeCollection.js",
+    "inscribeCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeCollectionItems.js",
     "createCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateCatalog.js",
     "airdropItems": "tsc && node --no-warnings dist/scripts/airdrop/AirdropItems.js",
+    "transferSingleItem": "tsc && node --no-warnings dist/scripts/transfer/TransferSingleItem.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -39,6 +38,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@handcash/handcash-connect": "^0.7.0",
     "bsv-wasm": "^2.0.1",
     "commander": "^10.0.1",
     "dotenv": "^16.1.4",

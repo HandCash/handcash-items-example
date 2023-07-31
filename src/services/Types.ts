@@ -31,7 +31,7 @@ export class ApiError extends Error {
 }
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
-export type QueryParams = Record<string, string>;
+export type QueryParams = Record<string, any>;
 export type HttpBody = Record<string, unknown>;
 export type RequestParams = {
     url: string;

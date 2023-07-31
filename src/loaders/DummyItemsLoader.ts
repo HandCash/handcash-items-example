@@ -34,7 +34,7 @@ export class DummyItemsLoader extends AbstractItemsLoader {
                         contentType: 'image/png',
                     },
                 },
-                totalQuantity: items.length,
+                totalQuantity: items.map((item) => item.quantity).reduce((a, b) => a + b, 0),
             }
         }
     }

@@ -3,7 +3,6 @@ import * as fs from "fs";
 
 type Params = {
     apiKey: string;
-    apiSecret: string;
     cloudName: string;
     uploadPreset?: string;
 };
@@ -11,13 +10,11 @@ type Params = {
 export default class CloudinaryImageService {
     static baseApiEndpoint = 'https://api.cloudinary.com';
     apiKey: string;
-    apiSecret: string;
     cloudName: string;
     uploadPreset: string;
 
-    constructor({apiKey, apiSecret, cloudName, uploadPreset}: Params) {
+    constructor({apiKey, cloudName, uploadPreset}: Params) {
         this.apiKey = apiKey;
-        this.apiSecret = apiSecret;
         this.cloudName = cloudName;
         this.uploadPreset = uploadPreset ?? 'ml_items';
     }
@@ -31,9 +28,6 @@ export default class CloudinaryImageService {
             url: CloudinaryImageService.baseApiEndpoint + `/v1_1/${this.cloudName}/image/upload`,
             requestInit: {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Basic ${Buffer.from(`${this.apiKey}:${this.apiSecret}`).toString('base64')}`
-                },
                 body: formData,
             }
         };

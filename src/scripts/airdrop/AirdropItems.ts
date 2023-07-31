@@ -2,7 +2,7 @@ import {ComponentsFactory} from "../../ComponentsFactory.js";
 import {Argument, Command} from "commander";
 import {CreateItemsCollectionItem} from "../../services/handcash/Types.js";
 
-const handCashService = ComponentsFactory.getHandCashService();
+const handCashMinter = ComponentsFactory.getHandCashMinter();
 
 async function main() {
     const [createItemsOrderId] = new Command()
@@ -10,7 +10,7 @@ async function main() {
         .parse(process.argv)
         .args;
 
-    const { items } = await handCashService.getCreateItemsOrder(createItemsOrderId);
+    const { items } = await handCashMinter.getOrder(createItemsOrderId);
     const destinations = await ComponentsFactory.getItemsLoader().loadAirdropDestinations();
     console.log(`- ✅ Loaded ${items.length} item(s) to airdrop them to ${destinations.length} user(s)`);
     await airdropItems(items, destinations);
@@ -31,7 +31,7 @@ async function airdropItems(items: CreateItemsCollectionItem[], destinations: St
     while (totalLeft > 0) {
         const destinationsWithOrigins = new Array(Math.min(totalLeft, batchSize))
             .fill(0)
-            .reduce((prev, _, index) => {
+            .reduce((prev, _) => {
                 prev.push({
                     destination: popRandomItem(destinationsLeft),
                     origins: [popRandomItem(itemsLeft).origin],
@@ -39,7 +39,7 @@ async function airdropItems(items: CreateItemsCollectionItem[], destinations: St
                 return prev;
             }, []);
         totalLeft = Math.min(destinationsLeft.length, itemsLeft.length);
-        await ComponentsFactory.getHandCashService().transferItems({destinationsWithOrigins});
+        await ComponentsFactory.getHandCashAccount().items.transfer({destinationsWithOrigins});
         process.stdout.clearLine(0);
         process.stdout.cursorTo(0);
         const percentageLeft = ((totalTarget - totalLeft) / totalTarget * 100).toFixed(1);
