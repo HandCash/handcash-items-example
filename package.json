@@ -8,7 +8,8 @@
     "build": "tsc",
     "getInscriptionOrder": "tsc && node --no-warnings dist/scripts/createItems/GetInscriptionOrder.js",
     "inscribeCollection": "tsc && node --no-warnings dist/scripts/createItems/InscribeCollection.js",
-    "inscribeCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeCollectionItems.js",
+    "inscribeStaticCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeStaticCollectionItems.js",
+    "inscribeDynamicCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeDynamicCollectionItems.js",
     "createCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateCatalog.js",
     "airdropItems": "tsc && node --no-warnings dist/scripts/airdrop/AirdropItems.js",
     "transferSingleItem": "tsc && node --no-warnings dist/scripts/transfer/TransferSingleItem.js",
@@ -31,6 +32,7 @@
   },
   "homepage": "https://github.com/HandCash/handcash-ordinals-minter#readme",
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@types/node": "^20.2.1",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",

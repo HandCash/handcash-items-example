@@ -7,7 +7,6 @@ import {CoomBattlesItemsLoader} from "./loaders/CoomBattlesItemsLoader.js";
 import {DummyItemsLoader} from "./loaders/DummyItemsLoader.js";
 import {HandCashMinter, Environments, Types, HandCashConnect} from "@handcash/handcash-connect";
 import fs from "node:fs";
-import HandCashCloudAccount from "../../handcash-connect-sdk-js/dist/handcash_cloud_account.js";
 
 export class ComponentsFactory {
     static getHandCashService(): HandCashService {
@@ -41,7 +40,7 @@ export class ComponentsFactory {
         });
     }
 
-    static getHandCashAccount(): HandCashCloudAccount {
+    static getHandCashAccount() {
         return new HandCashConnect({
             appId: handCashConfig.appId,
             appSecret: handCashConfig.appSecret,
