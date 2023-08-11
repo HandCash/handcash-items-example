@@ -11,7 +11,12 @@ async function main() {
 
     console.log('- ⏳ Retrieving order...');
     const result = await handCashMinter.getOrder(orderId);
+    console.log('============== Order ==============');
     console.log(JSON.stringify(result, null, 2));
+
+    const items = await handCashMinter.getOrderItems(orderId);
+    console.log('============== Items ==============');
+    console.log(JSON.stringify(items, null, 2));
 }
 
 (async () => {
