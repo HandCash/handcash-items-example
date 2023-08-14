@@ -1,8 +1,9 @@
 import {AbstractItemsLoader} from "./AbstractItemsLoader.js";
 import * as fs from "fs";
-import {CreateItemParameters, CreateItemsParameters} from "./Types.js";
-import {CreateCatalogParameters, ItemAttribute} from "../services/handcash/Types.js";
+import {CreateItemParameters} from "./Types.js";
+import {CreateCatalogParameters} from "../services/handcash/Types.js";
 import {handCashConfig} from "../Settings.js";
+import {Types} from "@handcash/handcash-connect";
 
 type Params = {
     folderPath: string;
@@ -16,7 +17,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         this.folderPath = folderPath;
     }
 
-    async loadItems(): Promise<CreateItemsParameters> {
+    async loadItems(): Promise<Types.CollectionDefinition> {
         return this.loadFromFile();
     }
 
@@ -54,7 +55,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         };
     }
 
-    private async loadFromFile(): Promise<CreateItemsParameters> {
+    private async loadFromFile(): Promise<Types.CollectionDefinition> {
         const data = JSON.parse(fs.readFileSync(`${this.folderPath}/info.json`, 'utf8'));
         const items = data.map((item: any) => this.loadItemFromRawItemData(item));
         return {
@@ -73,7 +74,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         }
     }
 
-    private loadItemFromRawItemData(itemData: any): CreateItemParameters {
+    private loadItemFromRawItemData(itemData: any): Types.ItemsMetadataWithQuantity {
         return {
             item: {
                 name: itemData['name'],
@@ -91,7 +92,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         };
     }
 
-    private getItemAttributes(itemData: any): ItemAttribute[] {
+    private getItemAttributes(itemData: any): Types.ItemAttributeMetadata[] {
         return [
             {
                 name: 'Edition',
