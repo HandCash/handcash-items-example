@@ -10,6 +10,9 @@
     "inscribeCollection": "tsc && node --no-warnings dist/scripts/createItems/InscribeCollection.js",
     "inscribeStaticCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeStaticCollectionItems.js",
     "inscribeDynamicCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeDynamicCollectionItems.js",
+    "AddStaticItemsToCreationOrder": "tsc && node --no-warnings dist/scripts/createItems/AddStaticItemsToCreationOrder.js",
+    "CommitItemCreationOrder": "tsc && node --no-warnings dist/scripts/createItems/CommitItemCreationOrder.js",
+    "InscribeItems" : "tsc && node --no-warnings dist/scripts/createItems/InscribeItems.js",
     "createCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateCatalog.js",
     "airdropItems": "tsc && node --no-warnings dist/scripts/airdrop/AirdropItems.js",
     "transferSingleItem": "tsc && node --no-warnings dist/scripts/transfer/TransferSingleItem.js",
@@ -40,11 +43,14 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@handcash/handcash-connect": "0.7.3-hotfix.1",
+    "@handcash/handcash-connect": "^0.7.3",
     "bsv-wasm": "^2.0.1",
     "commander": "^10.0.1",
     "dotenv": "^16.1.4",
+    "install": "^0.13.0",
     "nanoid": "^4.0.2",
-    "p-limit": "^4.0.0"
+    "p-limit": "^4.0.0",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
   }
 }

@@ -9,7 +9,7 @@ type Params = {
     folderPath: string;
 }
 
-export class CoomBattlesItemsLoader extends AbstractItemsLoader {
+export class MillionMintItemsLoader extends AbstractItemsLoader {
     folderPath: string;
 
     constructor({folderPath}: Params) {
@@ -24,32 +24,32 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
     async loadCatalog(): Promise<CreateCatalogParameters> {
         return {
             appId: handCashConfig.appId,
-            title: 'Coom Battles Starter Packs',
-            description: 'Champions of Otherworldly Magic limited edition trading cards',
+            title: '100k Birbs',
+            description: '100k Birbs',
             bannerUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685260727/items/Banner_chhigc.jpg',
             itemsAnimationGifUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686453704/items/151_gif_ndvbqb_pqbmsf.gif',
-            totalCollectionItems: 151,
+            totalCollectionItems: 4,
             selectablePacks: [
                 {
                     name: '1x Pack',
-                    description: 'Includes 1 random card',
+                    description: 'Includes 5 random card',
                     imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138930/items/1_gobyea.png',
-                    price: 3,
-                    units: 1,
+                    price: .01,
+                    units: 5,
                 },
                 {
                     name: '10x Pack',
-                    description: 'Includes 10 random cards',
+                    description: 'Includes 25 random cards',
                     imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138982/items/10_gv2jmo.png',
-                    price: 28,
-                    units: 10,
+                    price: .02,
+                    units: 25,
                 },
                 {
                     name: '25x Pack',
-                    description: 'Includes 25 random cards',
+                    description: 'Includes 100 random cards',
                     imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1687358038/items/25-pack_syrigb.png',
-                    price: 67,
-                    units: 25,
+                    price: .03,
+                    units: 100,
                 }
             ],
         };
@@ -61,15 +61,15 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         return {
             items,
             collection: {
-                name: 'CoOM Battles · First Edition',
-                description: 'Champions of Otherworldly Magic limited edition trading cards',
+                name: 'Test million mint',
+                description: '1,000,000 stick figures',
                 mediaDetails: {
                     image: {
-                        url: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686129013/items/Final_Icon_t9fo6m_cqt3s9_ags7cl.png',
-                        contentType: 'image/png',
+                        url:  `${this.folderPath}/images/1.jpeg`,
+                        contentType: 'image/jpeg',
                     },
                 },
-                totalQuantity: items.reduce((total: number, item: CreateItemParameters) => total + item.quantity, 0),
+                totalQuantity: 1000000,
             }
         }
     }
@@ -86,7 +86,6 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                         contentType: 'image/png',
                     },
                 },
-                color: this.getColorFromElement(itemData['element']),
             },
             quantity: itemData['totalQuantity'],
         };
@@ -104,82 +103,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                 value: itemData['generation'],
                 displayType: 'number',
             },
-            {
-                name: 'Champion Number',
-                value: itemData['championNumber'],
-                displayType: 'number',
-            },
-            {
-                name: 'Evolutions',
-                value: itemData['evolutions'],
-                displayType: 'string',
-            },
-            {
-                name: 'Skin',
-                value: itemData['skin'],
-                displayType: 'string',
-            },
-            {
-                name: 'Element',
-                value: itemData['element'],
-                displayType: 'string',
-            },
-            {
-                name: 'ManaCost',
-                value: itemData['manaCost'],
-                displayType: 'number',
-            },
-            {
-                name: 'Health',
-                value: itemData['health'],
-                displayType: 'number',
-            },
-            {
-                name: 'Attack',
-                value: itemData['attack'],
-                displayType: 'number',
-            },
-            {
-                name: 'Ability',
-                value: itemData['ability'],
-                displayType: 'number',
-            },
-            {
-                name: 'Rarity',
-                value: itemData['rarity'],
-                displayType: 'string',
-            },
-            {
-                name: 'Total Quantity',
-                displayType: 'number',
-                value: itemData.quantity
-             }
         ];
-    }
-
-    private getColorFromElement(element: string): string {
-        switch (element) {
-            case 'Fire':
-                return '#ed5025';
-            case 'Water':
-                return '#21bbea';
-            case 'Air':
-                return '#73c9ac';
-            case 'Ice':
-                return '#adeaf5';
-            case 'Light':
-                return '#f4a81b';
-            case 'Dark':
-                return '#a032ab';
-            case 'Earth':
-                return '#bf9078';
-            case 'Normal':
-                return '#828c98';
-            case 'Nature':
-                return '#40dc29';
-            default:
-                return '#FFFFFF';
-        }
     }
 
     loadAirdropDestinations(): Promise<String[]> {

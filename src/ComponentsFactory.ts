@@ -6,6 +6,7 @@ import {HandCashItemsLoader} from "./loaders/HandCashItemsLoader.js";
 import {CoomBattlesItemsLoader} from "./loaders/CoomBattlesItemsLoader.js";
 import {DummyItemsLoader} from "./loaders/DummyItemsLoader.js";
 import {HandCashMinter, Environments, Types, HandCashConnect} from "@handcash/handcash-connect";
+import { MillionMintItemsLoader } from "./loaders/MillionTestItemLoader.js";
 import fs from "node:fs";
 
 export class ComponentsFactory {
@@ -18,6 +19,9 @@ export class ComponentsFactory {
     }
 
     static getItemsLoader(): AbstractItemsLoader {
+        return new MillionMintItemsLoader({
+            folderPath: './assets/million',
+        })
         return new DummyItemsLoader({
             folderPath: './assets/dummy',
         });
@@ -26,7 +30,7 @@ export class ComponentsFactory {
         });
         return new DummyItemsLoader({
             folderPath: './assets/dummy',
-        });
+        }); 
         return new HandCashItemsLoader({
             folderPath: './assets/handcash_test',
         });
@@ -48,8 +52,13 @@ export class ComponentsFactory {
         }).getAccountFromAuthToken(handCashConfig.authToken);
     }
 
+    // static loadCollectionDefinition() : Promise<Types.CollectionDefinition> {
+    //     const jsonData = fs.readFileSync('./assets/example/info.json', 'utf8');
+    //     return this.getHandCashMinter().loadMetadataFromJson(jsonData);
+    // }
+
     static loadCollectionDefinition() : Promise<Types.CollectionDefinition> {
-        const jsonData = fs.readFileSync('./assets/example/info.json', 'utf8');
-        return this.getHandCashMinter().loadMetadataFromJson(jsonData);
-    }
+        const itemsLoader = this.getItemsLoader();
+        return itemsLoader.loadItems();
+    };
 }
