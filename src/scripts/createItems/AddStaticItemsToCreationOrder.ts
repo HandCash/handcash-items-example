@@ -12,15 +12,18 @@ async function main() {
     const collectionDefinition = await ComponentsFactory.loadCollectionDefinition();
     console.log()
     const order = await handCashMinter.createCollectionItemsOrder(collectionId);
-    console.log(order.id);
-      await handCashMinter.addOrderItems({
+    let totalQuantity = 0;
+    await handCashMinter.addOrderItems({
         orderId: order.id,
         items: collectionDefinition.items.map((item: any) => {
+          totalQuantity += item.quantity;
           item.item.quantity = item.quantity;
           return item.item;
         }),
         itemCreationOrderType: 'collectionItem'
       });
+    console.log(totalQuantity, 'items added to order');
+    console.log('To Commit order: npm run CommitItemCreationOrder', order.id);
   }
   
 

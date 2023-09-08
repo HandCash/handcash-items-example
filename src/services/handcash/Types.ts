@@ -56,7 +56,8 @@ export type CreateItemsOrder = {
     mintCostInUSD: number;
     collectionOrdinalId?: string;
     items: CreateItemsCollectionItem[];
-    collection?: CreateItemsCollectionItem;
+    app?: string,
+    referencedCollection: string;
     payment?: {
         paymentRequestId: string;
         paymentRequestUrl: string;

@@ -2,6 +2,7 @@ import {PrivateKey} from 'bsv-wasm';
 import {nanoid} from 'nanoid';
 import {Catalog, CreateCatalogParameters, CreateItemsOrder} from "./Types.js";
 import {ApiError, HttpBody, HttpMethod, QueryParams, RequestParams} from "../Types.js";
+import { Environments, HandCashConnect } from '@handcash/handcash-connect';
 
 type Params = {
     authToken?: string;
@@ -107,6 +108,18 @@ export default class HandCashService {
     async getCreateItemsOrder(orderId: string) {
         const requestParameters = this.getRequestParams('GET', `/v3/itemCreationOrder/${orderId}`);
         return HandCashService.handleRequest<CreateItemsOrder>(requestParameters, new Error().stack);
+    }
+
+    async getItems(collectionId: string, from: number, to: number) {
+        const handCashConnect =  new HandCashConnect({ 
+            appId: this.appId, 
+            appSecret: '4013d634f852eb31275665f13a724f8cbd5246f26334255ecacd128d7a285cda',
+            env: Environments.iae
+         }); 
+         const account = handCashConnect.getAccountFromAuthToken(this.privateKey?.to_hex());
+         const items = await account.items.getItemsInventory({ from, to, collectionId });
+         return items;
+         
     }
 
     async createCatalog(params: CreateCatalogParameters) {

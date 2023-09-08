@@ -12,14 +12,25 @@ async function main() {
       .addArgument(new Argument('<orderId>', 'The id of the collection where the items will be minted'))
       .parse(process.argv)
       .args;
-  
-   const limit = pLimit(10);
-   await Promise.allSettled(Array(Math.floor(52559/10)).fill((0)).map((_, index) => limit(async () => {
-    console.log('running', index)
-    return handCashMinter.inscribeNextBatch(orderId);
-   })));
+      let order = await handCashMinter.getOrder(orderId);
+      let batchNumber = 0;
+      while(order.pendingInscriptions > 0) {
+        console.log('Inscribing', order.pendingInscriptions, 'items')
+        batchNumber = await inscribeItemsInBatches(order, batchNumber)
+        order = await handCashMinter.getOrder(orderId);
+      }
 
+      console.log('All items inscribed to create catalog, npm run createCatalog', order.id);
+  }
 
+  async function inscribeItemsInBatches (order: any, batchNumber: number) {
+    const limit = pLimit(10);
+    await Promise.allSettled(Array(Math.floor(order.pendingInscriptions/ 10) || 1).fill((0)).map(() => limit(async () => {
+        console.log('Running batch', batchNumber)
+        batchNumber = batchNumber + 1;
+        return handCashMinter.inscribeNextBatch(order.id);
+    })));
+    return batchNumber;
   }
   
 

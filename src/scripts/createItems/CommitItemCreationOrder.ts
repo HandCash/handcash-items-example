@@ -13,7 +13,8 @@ async function main() {
       .args;
 
    const order = await handCashMinter.commitOrder(orderId);
-   console.log(order)
+   console.log('Order committed, pay the invoice here to continue', order.payment.paymentRequestUrl);
+   console.log('Then inscribe items with npm run InscribeItems', orderId);
   }
   
 

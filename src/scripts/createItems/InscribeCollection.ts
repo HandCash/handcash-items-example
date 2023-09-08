@@ -17,9 +17,8 @@ async function main() {
 
     console.log(`- ⏳ Inscribing collection...`);
     await handCashMinter.inscribeNextBatch(order.id);
-    order = await handCashMinter.getOrder(order.id);
-    console.log('Order status', order.status)
-    const items = await handCashMinter.getOrderItems(order.id);
+    order = await handCashMinter.getOrder('64fb8049482bd5473a7eecb2');
+    const items = await handCashMinter.getOrderItems('64fb8049482bd5473a7eecb2');
     console.log(`- ✅ Collection inscribed. Use the collectionId: ${items[0].id} to inscribe the collection items`);
     // 64c39dedbd39cf8667a6ccb5
 }

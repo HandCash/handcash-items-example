@@ -12,8 +12,7 @@ async function main() {
         .args;
 
     const catalog = await createCatalog();
-    const totalItems = await addItemsToCatalog(catalog.id, createItemsOrderId);
-    printCatalogSummary(catalog, totalItems);
+    printCatalogSummary(catalog, createItemsOrderId);
 }
 
 async function createCatalog(): Promise<Catalog> {
@@ -24,35 +23,9 @@ async function createCatalog(): Promise<Catalog> {
     return result;
 }
 
-async function addItemsToCatalog(catalogId: string, createItemsOrderId: string) {
-    const batchSize = 50;
-    const items = await handCashMinter.getOrderItems(createItemsOrderId);
-    let totalItemsLeft = items.length;
-    let totalItems = items.length;
-    process.stdout.write(`⏳ Adding items to catalog (0%)`);
-    while (totalItemsLeft > 0) {
-        const destinations = new Array(Math.min(totalItemsLeft, batchSize))
-            .fill(0)
-            .reduce((prev) => {
-                prev.push(items.pop()!.origin);
-                return prev;
-            }, []);
-        await handCashService.addItemsCatalog({
-            itemCatalogId: catalogId,
-            itemOrigins: destinations,
-        });
-        totalItemsLeft = items.length;
-        process.stdout.clearLine(0);
-        process.stdout.cursorTo(0);
-        process.stdout.write(`- ⏳ Adding items to catalog (${((totalItems - totalItemsLeft) / totalItems * 100).toFixed(1)})%`);
-    }
-    console.log('\n');
-    return items.length;
-}
 
-function printCatalogSummary(catalog: Catalog, totalItems: number) {
-    console.log(`- 👾 The catalog contains ${totalItems} item(s)`);
-    console.log('\n');
+function printCatalogSummary(catalog: Catalog, createItemsOrderId: string) {
+    console.log(`- 👾 add items with npm run addCollectionOrderItemsToCatalog `, catalog.id, createItemsOrderId);
     console.log('- Available packs:');
     catalog.selectablePacks.forEach(pack => {
         console.log(`\t- 📦 ${pack.name}. Payment URL: ${pack.paymentRequestUrl}`);
