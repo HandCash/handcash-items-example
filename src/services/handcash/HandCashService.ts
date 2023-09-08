@@ -110,18 +110,6 @@ export default class HandCashService {
         return HandCashService.handleRequest<CreateItemsOrder>(requestParameters, new Error().stack);
     }
 
-    async getItems(collectionId: string, from: number, to: number) {
-        const handCashConnect =  new HandCashConnect({ 
-            appId: this.appId, 
-            appSecret: '4013d634f852eb31275665f13a724f8cbd5246f26334255ecacd128d7a285cda',
-            env: Environments.iae
-         }); 
-         const account = handCashConnect.getAccountFromAuthToken(this.privateKey?.to_hex());
-         const items = await account.items.getItemsInventory({ from, to, collectionId });
-         return items;
-         
-    }
-
     async createCatalog(params: CreateCatalogParameters) {
         const requestParameters = this.getRequestParams('POST', `/v3/itemCatalog`, params);
         return HandCashService.handleRequest<Catalog>(requestParameters, new Error().stack);

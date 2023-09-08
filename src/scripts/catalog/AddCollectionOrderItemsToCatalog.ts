@@ -3,6 +3,7 @@ import {Argument, Command} from "commander";
 import pLimit from "p-limit";
 
 const handCashService = ComponentsFactory.getHandCashService();
+const handcashAccount = ComponentsFactory.getHandCashAccount();
 
 async function main() {
     const [catlogId, createItemsOrderId] = new Command()
@@ -13,7 +14,11 @@ async function main() {
 
 
     const itemCreationOrder = await handCashService.getCreateItemsOrder(createItemsOrderId);
-    let collectionItemsInInventory = await handCashService.getItems(itemCreationOrder.referencedCollection, 0, 10000);
+    let collectionItemsInInventory = await handcashAccount.items.getItemsInventory({
+        collectionId: itemCreationOrder.referencedCollection,
+        from: 0,
+        to: 20000,
+    })
     let numberOfItemsAdded = 0;
     while (collectionItemsInInventory.length > 0) {
         const chunks = [];
@@ -28,7 +33,11 @@ async function main() {
                 itemCatalogId: catlogId
             });
         })));
-        collectionItemsInInventory = await handCashService.getItems(itemCreationOrder.referencedCollection, 0, 20000);
+        collectionItemsInInventory = collectionItemsInInventory = await handcashAccount.items.getItemsInventory({
+            collectionId: itemCreationOrder.referencedCollection,
+            from: 0,
+            to: 20000,
+        })
     }
     console.log(numberOfItemsAdded, 'Items Added to Catalog');
 }
