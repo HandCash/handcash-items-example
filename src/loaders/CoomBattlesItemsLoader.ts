@@ -83,6 +83,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                 mediaDetails: {
                     image: {
                         url: `${this.folderPath}/images/${itemData['image']}`,
+                        imageCacheUrl: `${this.folderPath}/images/${itemData['cacheImage']}`,
                         contentType: 'image/png',
                     },
                 },

@@ -65,7 +65,7 @@ export class MillionMintItemsLoader extends AbstractItemsLoader {
                 description: '1,000,000 stick figures',
                 mediaDetails: {
                     image: {
-                        url:  `${this.folderPath}/images/1.jpeg`,
+                        url:  `${this.folderPath}/images/1.png`,
                         contentType: 'image/jpeg',
                     },
                 },
@@ -83,6 +83,7 @@ export class MillionMintItemsLoader extends AbstractItemsLoader {
                 mediaDetails: {
                     image: {
                         url: `${this.folderPath}/images/${itemData['image']}`,
+                        imageCacheUrl: `${itemData['cacheImage']}`,
                         contentType: 'image/png',
                     },
                 },
