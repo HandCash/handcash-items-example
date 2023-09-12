@@ -83,7 +83,7 @@ export class MillionMintItemsLoader extends AbstractItemsLoader {
                 mediaDetails: {
                     image: {
                         url: `${this.folderPath}/images/${itemData['image']}`,
-                        imageCacheUrl: `${itemData['cacheImage']}`,
+                        imageHighResUrl: `${itemData['cacheImage']}`,
                         contentType: 'image/png',
                     },
                 },
