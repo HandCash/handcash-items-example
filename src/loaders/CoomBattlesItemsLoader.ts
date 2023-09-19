@@ -34,7 +34,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                     name: '10x Pack',
                     description: 'Includes 10 random card',
                     imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1695156953/items/uis4qs9ynwbxy4skpswa.png',
-                    price: 5,
+                    price: 3.5,
                     units: 10,
                 },
                 {
