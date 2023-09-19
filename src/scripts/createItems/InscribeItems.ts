@@ -12,6 +12,7 @@ async function main() {
       .addArgument(new Argument('<orderId>', 'The id of the collection where the items will be minted'))
       .parse(process.argv)
       .args;
+
       let order = await handCashMinter.getOrder(orderId);
       let batchNumber = 0;
       while(order.pendingInscriptions > 0) {
@@ -25,7 +26,7 @@ async function main() {
 
   async function inscribeItemsInBatches (order: any, batchNumber: number) {
     const limit = pLimit(10);
-    await Promise.allSettled(Array(Math.floor(order.pendingInscriptions/ 10) || 1).fill((0)).map(() => limit(async () => {
+    await Promise.allSettled(Array(Math.floor(order.pendingInscriptions/ 38)).fill((0)).map(() => limit(async () => {
         console.log('Running batch', batchNumber)
         batchNumber = batchNumber + 1;
         return handCashMinter.inscribeNextBatch(order.id);

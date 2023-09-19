@@ -2,7 +2,7 @@ import {ComponentsFactory} from "../../ComponentsFactory.js";
 import {Argument, Command} from "commander";
 
 const handCashMinter = ComponentsFactory.getHandCashMinter();
-
+const imageService = ComponentsFactory.getImageService();
 async function main() {
     const [collectionId] = new Command()
       .addArgument(new Argument('<collectionId>', 'The id of the collection where the items will be minted'))
@@ -10,7 +10,6 @@ async function main() {
       .args;
   
     const collectionDefinition = await ComponentsFactory.loadCollectionDefinition();
-    console.log()
     const order = await handCashMinter.createCollectionItemsOrder(collectionId);
     let totalQuantity = 0;
     await handCashMinter.addOrderItems({

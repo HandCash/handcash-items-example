@@ -19,12 +19,12 @@ export class ComponentsFactory {
     }
 
     static getItemsLoader(): AbstractItemsLoader {
-        return new MillionMintItemsLoader({
-            folderPath: './assets/million',
-        })
-        return new DummyItemsLoader({
-            folderPath: './assets/dummy',
-        });
+        // return new MillionMintItemsLoader({
+        //     folderPath: './assets/million',
+        // })
+        // return new DummyItemsLoader({
+        //     folderPath: './assets/dummy',
+        // });
         return new CoomBattlesItemsLoader({
             folderPath: './assets/coom',
         });
@@ -40,7 +40,7 @@ export class ComponentsFactory {
         return HandCashMinter.fromAppCredentials({
             appId: handCashConfig.appId,
             authToken: handCashConfig.authToken,
-            env: Environments.iae,
+            env: Environments.prod,
         });
     }
 
@@ -48,7 +48,7 @@ export class ComponentsFactory {
         return new HandCashConnect({
             appId: handCashConfig.appId,
             appSecret: handCashConfig.appSecret,
-            env: Environments.iae,
+            env: Environments.prod,
         }).getAccountFromAuthToken(handCashConfig.authToken);
     }
 
