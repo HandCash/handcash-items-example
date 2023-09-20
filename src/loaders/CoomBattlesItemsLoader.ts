@@ -26,8 +26,8 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
             appId: handCashConfig.appId,
             title: 'Coom Battles Starter Packs',
             description: 'Champions of Otherworldly Magic 2nd Edition trading cards',
-            bannerUrl: '',// TODO needs to be added 
-            itemsAnimationGifUrl: '', // TODO needs to be added 
+            bannerUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685260727/items/Banner_chhigc.jpg',
+            itemsAnimationGifUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1695185175/items/gif-for-gen2_2_bbvucv.gif',
             totalCollectionItems: 149,
             selectablePacks: [
                 {
