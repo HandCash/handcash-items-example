@@ -89,14 +89,14 @@ npm run inscribeCollection
 ### 2. Create an inscribe collection item
 
 ```bash
-npm run InscribeStaticCollectionItems <create_collection_order_id>
+npm run InscribeStaticCollectionItems <collection_id>
 ```
 
 ## Add items to an existing collection
 update `info.json` and in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
 
 ```bash
-npm run InscribeStaticCollectionItems <create_collection_order_id>
+npm run InscribeStaticCollectionItems <collection_id>
 ```
 
 ## Airdrop a collection
