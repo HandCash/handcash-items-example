@@ -69,11 +69,18 @@ Change it to your needs:
 }
 
 ```
+
+Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. 
+
 Your can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
 
-## Create a collection
+## Create a new collection collection
 
-### 1. Create an inscribe a collection
+### 1. Configure Component Loader 
+
+in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
+
+### 2. Create an inscribe a collection
 
 ```bash
 npm run inscribeCollection
@@ -82,7 +89,14 @@ npm run inscribeCollection
 ### 2. Create an inscribe collection item
 
 ```bash
-npm run inscribeCollectionItems <create_collection_order_id>
+npm run InscribeStaticCollectionItems <create_collection_order_id>
+```
+
+## Add items to an existing collection
+update `info.json` and in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
+
+```bash
+npm run InscribeStaticCollectionItems <create_collection_order_id>
 ```
 
 ## Airdrop a collection

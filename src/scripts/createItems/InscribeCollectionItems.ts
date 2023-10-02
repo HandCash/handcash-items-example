@@ -4,17 +4,24 @@ import {Types} from "@handcash/handcash-connect";
 const handCashMinter = ComponentsFactory.getHandCashMinter();
 
 export async function inscribeItems(collectionDefinition: Types.CollectionDefinition, collectionId: string) {
+    let totalQuantity = 0;
+    const itemsToMint = collectionDefinition.items.map((item: any) => {
+        totalQuantity += item.quantity;
+        item.item.quantity = item.quantity;
+        return item.item;
+      });
+    if (totalQuantity > 1000) throw new Error('Please reach out to HandCash sales for tips on minting larger quantities of items.');
+
     console.log(`⏳ Creating mint order of type collectionItems...`);
     let order = await handCashMinter.createCollectionItemsOrder(collectionId);
     console.log(`- ✅ Mint order created. Order ID: ${order.id}`);
 
-    console.log(`- ⏳  Adding ${collectionDefinition.collection.totalQuantity} items to the order...`);
+    console.log(`- ⏳  Adding ${totalQuantity} items to the order...`);
     for (const itemMetadata of collectionDefinition.items) {
-        const items = new Array(itemMetadata.quantity).fill(0).map(() => itemMetadata.item);
         console.log(`- ⏳  Adding ${itemMetadata.quantity} unit(s) of item named ${itemMetadata.item.name}...`);
         await handCashMinter.addOrderItems({
             orderId: order.id,
-            items,
+            items: itemsToMint,
             itemCreationOrderType: 'collectionItem'
         });
     }
@@ -31,6 +38,7 @@ export async function inscribeItems(collectionDefinition: Types.CollectionDefini
     while (order.pendingInscriptions > 0) {
         console.log(`- ⏳ Inscribing items. ${order.pendingInscriptions} pending inscriptions...`);
         order = await handCashMinter.inscribeNextBatch(order.id);
+        order = await handCashMinter.getOrder(order.id);
     }
     console.log(`- ✅ All items inscribed`);
 }

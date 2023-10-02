@@ -90,8 +90,8 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                 mediaDetails: {
                     image: {
                         url: `${this.folderPath}/images/${itemData['image']}`,
-                        imageHighResUrl: `${this.folderPath}/images/${itemData['cacheImage']}`,
-                        contentType: 'image/webp',
+                        imageHighResUrl: itemData['cacheImage'] ? `${this.folderPath}/images/${itemData['cacheImage']}` : undefined,
+                        contentType: 'image/png',
                     },
                 },
                 color: this.getColorFromElement(itemData['element']),
