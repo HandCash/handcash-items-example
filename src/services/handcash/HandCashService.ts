@@ -2,6 +2,7 @@ import {PrivateKey} from 'bsv-wasm';
 import {nanoid} from 'nanoid';
 import {Catalog, CreateCatalogParameters, CreateItemsOrder} from "./Types.js";
 import {ApiError, HttpBody, HttpMethod, QueryParams, RequestParams} from "../Types.js";
+import { Environments, HandCashConnect } from '@handcash/handcash-connect';
 
 type Params = {
     authToken?: string;

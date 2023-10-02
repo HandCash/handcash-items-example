@@ -25,31 +25,38 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         return {
             appId: handCashConfig.appId,
             title: 'Coom Battles Starter Packs',
-            description: 'Champions of Otherworldly Magic limited edition trading cards',
+            description: 'Champions of Otherworldly Magic 2nd Edition trading cards',
             bannerUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685260727/items/Banner_chhigc.jpg',
-            itemsAnimationGifUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686453704/items/151_gif_ndvbqb_pqbmsf.gif',
-            totalCollectionItems: 151,
+            itemsAnimationGifUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1695185175/items/gif-for-gen2_2_bbvucv.gif',
+            totalCollectionItems: 149,
             selectablePacks: [
                 {
-                    name: '1x Pack',
-                    description: 'Includes 1 random card',
-                    imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138930/items/1_gobyea.png',
-                    price: 3,
-                    units: 1,
-                },
-                {
                     name: '10x Pack',
-                    description: 'Includes 10 random cards',
-                    imageUrl: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685138982/items/10_gv2jmo.png',
-                    price: 28,
+                    description: 'Includes 10 random card',
+                    imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1695156953/items/uis4qs9ynwbxy4skpswa.png',
+                    price: 3.5,
                     units: 10,
                 },
                 {
-                    name: '25x Pack',
-                    description: 'Includes 25 random cards',
-                    imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1687358038/items/25-pack_syrigb.png',
-                    price: 67,
-                    units: 25,
+                    name: '50x Pack',
+                    description: 'Includes 50 random cards',
+                    imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1695156955/items/cegukohavxaio4n74pex.png',
+                    price: 17.5,
+                    units: 50,
+                },
+                {
+                    name: '200x Pack',
+                    description: 'Includes 200 random cards',
+                    imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1695156958/items/bfmasf0aj87wy6niqpdo.png',
+                    price: 70,
+                    units: 200,
+                },
+                {
+                    name: '1000x Pack',
+                    description: 'Includes 1000 random cards',
+                    imageUrl: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1695156960/items/pifywq8qs42pvz9w2ekl.png',
+                    price: 350,
+                    units: 1000,
                 }
             ],
         };
@@ -61,8 +68,8 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         return {
             items,
             collection: {
-                name: 'CoOM Battles · First Edition',
-                description: 'Champions of Otherworldly Magic limited edition trading cards',
+                name: 'Champions TCG - Generation 2',
+                description: '149 champions and 14 new abilities',
                 mediaDetails: {
                     image: {
                         url: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686129013/items/Final_Icon_t9fo6m_cqt3s9_ags7cl.png',
@@ -83,6 +90,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                 mediaDetails: {
                     image: {
                         url: `${this.folderPath}/images/${itemData['image']}`,
+                        imageHighResUrl: itemData['cacheImage'] ? `${this.folderPath}/images/${itemData['cacheImage']}` : undefined,
                         contentType: 'image/png',
                     },
                 },
@@ -139,6 +147,21 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                 value: itemData['attack'],
                 displayType: 'number',
             },
+            {
+                name: 'Ability',
+                value: itemData['ability'],
+                displayType: 'number',
+            },
+            {
+                name: 'Rarity',
+                value: itemData['rarity'],
+                displayType: 'string',
+            },
+            {
+                name: 'Total Quantity',
+                displayType: 'number',
+                value: itemData.totalQuantity
+             }
         ];
     }
 

@@ -6,6 +6,7 @@ import {HandCashItemsLoader} from "./loaders/HandCashItemsLoader.js";
 import {CoomBattlesItemsLoader} from "./loaders/CoomBattlesItemsLoader.js";
 import {DummyItemsLoader} from "./loaders/DummyItemsLoader.js";
 import {HandCashMinter, Environments, Types, HandCashConnect} from "@handcash/handcash-connect";
+import { MillionMintItemsLoader } from "./loaders/MillionTestItemLoader.js";
 import fs from "node:fs";
 
 export class ComponentsFactory {
@@ -18,25 +19,28 @@ export class ComponentsFactory {
     }
 
     static getItemsLoader(): AbstractItemsLoader {
-        return new DummyItemsLoader({
-            folderPath: './assets/dummy',
-        });
+        // return new MillionMintItemsLoader({
+        //     folderPath: './assets/million',
+        // })
+        // return new DummyItemsLoader({
+        //     folderPath: './assets/dummy',
+        // });
         return new CoomBattlesItemsLoader({
             folderPath: './assets/coom',
         });
-        return new DummyItemsLoader({
-            folderPath: './assets/dummy',
-        });
-        return new HandCashItemsLoader({
-            folderPath: './assets/handcash_test',
-        });
+        // return new DummyItemsLoader({
+        //     folderPath: './assets/dummy',
+        // }); 
+        // return new HandCashItemsLoader({
+        //     folderPath: './assets/handcash_test',
+        // });
     }
 
     static getHandCashMinter(): HandCashMinter {
         return HandCashMinter.fromAppCredentials({
             appId: handCashConfig.appId,
             authToken: handCashConfig.authToken,
-            env: Environments.iae,
+            env: Environments.prod,
         });
     }
 
@@ -44,12 +48,17 @@ export class ComponentsFactory {
         return new HandCashConnect({
             appId: handCashConfig.appId,
             appSecret: handCashConfig.appSecret,
-            env: Environments.iae,
+            env: Environments.prod,
         }).getAccountFromAuthToken(handCashConfig.authToken);
     }
 
+    // static loadCollectionDefinition() : Promise<Types.CollectionDefinition> {
+    //     const jsonData = fs.readFileSync('./assets/example/info.json', 'utf8');
+    //     return this.getHandCashMinter().loadMetadataFromJson(jsonData);
+    // }
+
     static loadCollectionDefinition() : Promise<Types.CollectionDefinition> {
-        const jsonData = fs.readFileSync('./assets/example/info.json', 'utf8');
-        return this.getHandCashMinter().loadMetadataFromJson(jsonData);
-    }
+        const itemsLoader = this.getItemsLoader();
+        return itemsLoader.loadItems();
+    };
 }
