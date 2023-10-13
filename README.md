@@ -123,3 +123,18 @@ npm run transferSingleItem <origin> <destination>
 ```bash
 npm run getInscriptionOrder <order_id>
 ```
+
+## Util Methods 
+
+## Upload image
+```bash
+npm run uploadImage <pathToFile>
+```
+## Send All Order Items to Handle
+```bash
+npm run sendAllOrderItems <orderId> <handle> 
+```
+
+
+Upload image to cloudinary 
+
