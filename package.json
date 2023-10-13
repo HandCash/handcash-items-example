@@ -8,6 +8,7 @@
     "build": "tsc",
     "getInscriptionOrder": "tsc && node --no-warnings dist/scripts/createItems/GetInscriptionOrder.js",
     "inscribeCollection": "tsc && node --no-warnings dist/scripts/createItems/InscribeCollection.js",
+    "uploadImage": "tsc && node --no-warnings dist/scripts/util/uploadImage.js",
     "inscribeStaticCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeStaticCollectionItems.js",
     "inscribeDynamicCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeDynamicCollectionItems.js",
     "AddStaticItemsToCreationOrder": "tsc && node --no-warnings dist/scripts/createItems/AddStaticItemsToCreationOrder.js",
