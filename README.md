@@ -135,6 +135,3 @@ npm run uploadImage <pathToFile>
 npm run sendAllOrderItems <orderId> <handle> 
 ```
 
-
-Upload image to cloudinary 
-
