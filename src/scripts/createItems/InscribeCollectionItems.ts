@@ -17,14 +17,11 @@ export async function inscribeItems(collectionDefinition: Types.CollectionDefini
     console.log(`- ✅ Mint order created. Order ID: ${order.id}`);
 
     console.log(`- ⏳  Adding ${totalQuantity} items to the order...`);
-    for (const itemMetadata of collectionDefinition.items) {
-        console.log(`- ⏳  Adding ${itemMetadata.quantity} unit(s) of item named ${itemMetadata.item.name}...`);
-        await handCashMinter.addOrderItems({
-            orderId: order.id,
-            items: itemsToMint,
-            itemCreationOrderType: 'collectionItem'
-        });
-    }
+    await handCashMinter.addOrderItems({
+        orderId: order.id,
+        items: itemsToMint,
+        itemCreationOrderType: 'collectionItem'
+    });
     console.log('- ✅  Items added to mint order');
 
     order = await handCashMinter.commitOrder(order.id);
