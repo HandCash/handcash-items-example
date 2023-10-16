@@ -10,7 +10,7 @@
     "inscribeCollection": "tsc && node --no-warnings dist/scripts/createItems/InscribeCollection.js",
     "uploadImage": "tsc && node --no-warnings dist/scripts/util/uploadImage.js",
     "sendAllOrderItems": "tsc && node --no-warnings dist/scripts/util/sendAllOrderItems.js",
-    "inscribeStaticCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeStaticCollectionItems.js",
+    "InscribeStaticCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeStaticCollectionItems.js",
     "inscribeDynamicCollectionItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeDynamicCollectionItems.js",
     "AddStaticItemsToCreationOrder": "tsc && node --no-warnings dist/scripts/createItems/AddStaticItemsToCreationOrder.js",
     "CommitItemCreationOrder": "tsc && node --no-warnings dist/scripts/createItems/CommitItemCreationOrder.js",

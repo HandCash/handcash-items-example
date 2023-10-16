@@ -19,21 +19,24 @@ export class ComponentsFactory {
     }
 
     static getItemsLoader(): AbstractItemsLoader {
+
+        // 10 NFT example
+        // return new HandCashItemsLoader({
+        //     folderPath: './assets/handcash_test',
+        // });
+        
         // return new MillionMintItemsLoader({
         //     folderPath: './assets/million',
         // })
         // return new DummyItemsLoader({
         //     folderPath: './assets/dummy',
         // });
-        return new CoomBattlesItemsLoader({
-            folderPath: './assets/coom',
-        });
+        // return new CoomBattlesItemsLoader({
+        //     folderPath: './assets/coom',
+        // });
         // return new DummyItemsLoader({
         //     folderPath: './assets/dummy',
         // }); 
-        // return new HandCashItemsLoader({
-        //     folderPath: './assets/handcash_test',
-        // });
     }
 
     static getHandCashMinter(): HandCashMinter {

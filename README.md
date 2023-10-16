@@ -70,7 +70,8 @@ Change it to your needs:
 
 ```
 
-Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. 
+Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. 1 MB is the maximum size for the `image`.
+ Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. No limit for size of `cacheImage`.
 
 Your can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
 
@@ -79,6 +80,17 @@ Your can find more about this configuration file at https://docs.handcash.io/doc
 ### 1. Configure Component Loader 
 
 in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
+for example the item loader below will create 10 example NFTs of the handcash team
+
+```
+ static getItemsLoader(): AbstractItemsLoader {
+        // 10 NFT example
+        return new HandCashItemsLoader({
+             folderPath: './assets/handcash_test',
+        });
+    }
+
+```
 
 ### 2. Create an inscribe a collection
 

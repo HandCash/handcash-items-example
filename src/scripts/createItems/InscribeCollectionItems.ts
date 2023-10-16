@@ -38,4 +38,5 @@ export async function inscribeItems(collectionDefinition: Types.CollectionDefini
         order = await handCashMinter.getOrder(order.id);
     }
     console.log(`- ✅ All items inscribed`);
+    console.log('Run npm run getInscriptionOrder', order.id, 'to see the order details')
 }

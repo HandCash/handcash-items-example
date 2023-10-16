@@ -133,3 +133,4 @@ dist
 
 assets/*
 !assets/example
+!assets/handcash_test
