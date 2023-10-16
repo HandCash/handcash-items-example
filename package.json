@@ -46,7 +46,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@handcash/handcash-connect": "0.7.4",
+    "@handcash/handcash-connect": "^0.7.4-hotfix.3",
     "bsv-wasm": "^2.0.1",
     "commander": "^10.0.1",
     "dotenv": "^16.1.4",
