@@ -53,7 +53,7 @@ export class HandCashItemsLoader extends AbstractItemsLoader {
                 },
                 color: this.getColorFromName(itemData['name']),
             },
-            quantity: 1,
+            quantity: itemData['quantity'],
         };
     }
 

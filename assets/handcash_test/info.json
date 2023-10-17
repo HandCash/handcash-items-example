@@ -3,7 +3,7 @@
       "edition": "Test",
       "generation": 1,
       "image": "rafa.png",
-      "totalQuantity": 3, 
+      "quantity": 3, 
       "rarity": "Mythic",
       "name": "Rafa",
       "country": "Spain"
@@ -12,7 +12,7 @@
       "edition": "Test",
       "generation": 1,
       "image": "alex.png",
-      "totalQuantity": 3,
+      "quantity": 3,
       "rarity": "Mythic",
       "name": "Alex",
       "country": "Andorra"
@@ -22,7 +22,7 @@
       "generation": 2,
       "image": "bb.png",
       "name": "Brandon Bryant",
-      "totalQuantity": 1,
+      "quantity": 1,
       "rarity": "Mythic",
       "country": "United States"
     },
@@ -30,7 +30,7 @@
       "edition": "Test",
       "generation": 1,
       "image": "bc.png",
-      "totalQuantity": 1,
+      "quantity": 1,
       "rarity": "Mythic",
       "name": "Brandon Cryderman",
       "country": "Canada"
@@ -39,7 +39,7 @@
       "edition": "Test",
       "generation": 1,
       "image": "ivan.png",
-      "totalQuantity": 1,
+      "quantity": 1,
       "rarity": "Mythic",
       "name": "Ivan",
       "country": "Slovenia"
@@ -48,7 +48,7 @@
       "edition": "Test",
       "generation": 1,
       "image": "brett.png",
-      "totalQuantity": 1,
+      "quantity": 1,
       "rarity": "Mythic",
       "name": "Brett",
       "country": "United States"
@@ -57,7 +57,7 @@
       "edition": "Test",
       "generation": 1,
       "image": "jay.png",
-      "totalQuantity": 1,
+      "quantity": 1,
       "rarity": "Mythic",
       "name": "Jay",
       "country": "United States"
