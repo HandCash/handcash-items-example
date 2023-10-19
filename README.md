@@ -68,7 +68,7 @@ Create a json file of each Item you would like to create with attributes
 
 
 
-### Configure Custom Component Loader 
+### Create Custom Component Loader 
 The component loader is used to map the data above into the [expected structure](src/loaders/Types.ts)
 
 name and image are the only required fields
