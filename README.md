@@ -69,7 +69,7 @@ Create a json file of each Item you would like to create, the data can be in any
 
 
 ### Create Custom Component Loader 
-Because data can in many different forms, you must create a custom component loader to map your data to the [expected structure](src/loaders/Types.ts) the only required fields for each item are name and image.
+Because data can be in many different forms, you must create a custom component loader to map your data to the [expected structure](src/loaders/Types.ts) the only required fields for each item are name and image.
 You can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
 
 
