@@ -16,11 +16,6 @@ HANDCASH_APP_ID=<your-app-id>
 HANDCASH_APP_SECRET=<your-app-secret>
 HANDCASH_AUTH_TOKEN=<your-business-wallet-auth-token>
 
-# IAE values
-HANDCASH_BASE_API_ENDPOINT=https://iae.cloud.handcash.io
-CLOUDINARY_API_KEY=882244126343337
-CLOUDINARY_CLOUD_NAME=handcash-iae
-
 # Prod values
 HANDCASH_BASE_API_ENDPOINT=https://cloud.handcash.io
 CLOUDINARY_API_KEY=544588249773336
