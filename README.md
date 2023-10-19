@@ -79,6 +79,7 @@ Cache image is an optional higher res image that does not go on chain but is set
 
 Your can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
 
+You can find an example of a custom component loader [here](src/loaders/HandCashItemsLoader.ts)
 
 ```json
 {
