@@ -30,7 +30,7 @@ CLOUDINARY_CLOUD_NAME=hn8pdtayf
 
 
 ## Define your collection
-Create a json file of each Item you would like to create with attributes
+Create a json file of each Item you would like to create, the data can be in any structure.
 
  [Example](/assets/handcash_test/info.json)
 ```json
@@ -69,15 +69,15 @@ Create a json file of each Item you would like to create with attributes
 
 
 ### Create Custom Component Loader 
-The component loader is used to map the data above into the [expected structure](src/loaders/Types.ts)
+Because data can in many different forms, you must create a custom component loader to map your data to the [expected structure](src/loaders/Types.ts) the only required fields for each item are name and image.
+You can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
 
-name and image are the only required fields
 
-Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. 1 MB is the maximum size for the `image`.
+#### Some tips
+- Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. 1 MB is the maximum size for the `image`.
+- Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. No limit for size of `cacheImage`.
 
-Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. No limit for size of `cacheImage`.
 
-Your can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
 
 You can find an example of a custom component loader [here](src/loaders/HandCashItemsLoader.ts)
 
