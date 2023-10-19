@@ -32,6 +32,9 @@ CLOUDINARY_CLOUD_NAME=hn8pdtayf
 ## Define your collection
 Create a json file of each Item you would like to create, the data can be in any structure.
 
+Here is an example defining 3 items, quantity denontes how many of each item we want to be created.
+
+
  [Example](/assets/handcash_test/info.json)
 ```json
 [
