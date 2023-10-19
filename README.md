@@ -28,10 +28,57 @@ CLOUDINARY_CLOUD_NAME=hn8pdtayf
 
 ```
 
-## Define your collection
 
-The file located at `/assets/example/info.json` defines the collection metadata.
-Change it to your needs:
+## Define your collection
+Create a json file of each Item you would like to create with attributes
+
+ [Example](/assets/handcash_test/info.json)
+```json
+[
+    {
+      "edition": "Test",
+      "generation": 1,
+      "image": "rafa.png",
+      "quantity": 3, 
+      "rarity": "Mythic",
+      "name": "Rafa",
+      "country": "Spain"
+    },
+    {
+      "edition": "Test",
+      "generation": 1,
+      "image": "alex.png",
+      "quantity": 3,
+      "rarity": "Mythic",
+      "name": "Alex",
+      "country": "Andorra"
+    },
+    {
+      "edition": "Test",
+      "generation": 2,
+      "image": "bb.png",
+      "name": "Brandon Bryant",
+      "quantity": 1,
+      "rarity": "Mythic",
+      "country": "United States"
+    }
+]
+
+```
+
+
+
+### Configure Custom Component Loader 
+The component loader is used to map the data above into the [expected structure](src/loaders/Types.ts)
+
+name and image are the only required fields
+
+Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. 1 MB is the maximum size for the `image`.
+
+Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. No limit for size of `cacheImage`.
+
+Your can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
+
 
 ```json
 {
@@ -70,12 +117,7 @@ Change it to your needs:
 
 ```
 
-Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. 1 MB is the maximum size for the `image`.
- Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. No limit for size of `cacheImage`.
 
-Your can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
-
-## Create a new collection collection
 
 ### 1. Configure Component Loader 
 
