@@ -1,6 +1,6 @@
 import {PrivateKey} from 'bsv-wasm';
 import {nanoid} from 'nanoid';
-import {Catalog, CreateCatalogParameters, CreateItemsOrder} from "./Types.js";
+import {Catalog, CreateCatalogParameters, CreateItemsOrder, CreateUnlimitedCatalogParameters} from "./Types.js";
 import {ApiError, HttpBody, HttpMethod, QueryParams, RequestParams} from "../Types.js";
 import { Environments, HandCashConnect } from '@handcash/handcash-connect';
 
@@ -112,6 +112,11 @@ export default class HandCashService {
 
     async createCatalog(params: CreateCatalogParameters) {
         const requestParameters = this.getRequestParams('POST', `/v3/itemCatalog`, params);
+        return HandCashService.handleRequest<Catalog>(requestParameters, new Error().stack);
+    }
+
+    async createUnlimitedCatalog(params: CreateUnlimitedCatalogParameters) {
+        const requestParameters = this.getRequestParams('POST', `/v3/itemCatalog/createUnlimitedCatalog`, params);
         return HandCashService.handleRequest<Catalog>(requestParameters, new Error().stack);
     }
 

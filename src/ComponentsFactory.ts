@@ -3,6 +3,7 @@ import {cloudinaryConfig, handCashConfig} from "./Settings.js";
 import CloudinaryImageService from "./services/image/CloudinaryImageService.js";
 import {AbstractItemsLoader} from "./loaders/AbstractItemsLoader.js";
 import {HandCashItemsLoader} from "./loaders/HandCashItemsLoader.js";
+import { MonsterLoader } from "./loaders/MonsterLoader.js";
 import {CoomBattlesItemsLoader} from "./loaders/CoomBattlesItemsLoader.js";
 import {DummyItemsLoader} from "./loaders/DummyItemsLoader.js";
 import {HandCashMinter, Environments, Types, HandCashConnect} from "@handcash/handcash-connect";
@@ -21,9 +22,13 @@ export class ComponentsFactory {
     static getItemsLoader(): AbstractItemsLoader {
 
         // 10 NFT example
-        // return new HandCashItemsLoader({
-        //     folderPath: './assets/handcash_test',
-        // });
+        return new HandCashItemsLoader({
+            folderPath: './assets/handcash_test',
+        });
+
+        // return new MonsterLoader({
+        //     folderPath: './assets/monsters',
+        // }, ComponentsFactory.getImageService());
         
         // return new MillionMintItemsLoader({
         //     folderPath: './assets/million',

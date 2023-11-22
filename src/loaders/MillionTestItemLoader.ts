@@ -1,7 +1,7 @@
 import {AbstractItemsLoader} from "./AbstractItemsLoader.js";
 import * as fs from "fs";
 import {CreateItemParameters} from "./Types.js";
-import {CreateCatalogParameters} from "../services/handcash/Types.js";
+import {CreateCatalogParameters, CreateUnlimitedCatalogParameters} from "../services/handcash/Types.js";
 import {handCashConfig} from "../Settings.js";
 import {Types} from "@handcash/handcash-connect";
 
@@ -73,6 +73,10 @@ export class MillionMintItemsLoader extends AbstractItemsLoader {
             }
         }
     }
+
+    async loadUnlimitedCatalog(collectionId: string): Promise<CreateUnlimitedCatalogParameters> {
+        throw new Error('Method not implemented.');
+    };
 
     private loadItemFromRawItemData(itemData: any): Types.ItemsMetadataWithQuantity {
         return {

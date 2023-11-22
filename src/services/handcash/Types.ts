@@ -5,6 +5,7 @@ export type Many<E> = {
 export type File = {
     url: string;
     contentType: string;
+    imageHighResUrl?: string;
 }
 
 export type MediaDetails = {
@@ -32,6 +33,7 @@ export type CreateItemsCollectionItem = {
     attributes: ItemAttribute[];
     mediaDetails: MediaDetails;
     origin?: string;
+    likelihood?: number;
 }
 
 export type CreateItemsCollection = {
@@ -67,20 +69,30 @@ export type CreateItemsOrder = {
     pendingInscriptions: number;
 }
 
-export type CreateCatalogParameters = {
+export type CatalogBase = {
     appId: string;
     title: string;
     description: string;
     bannerUrl: string;
     itemsAnimationGifUrl: string;
+    selectablePacks: Pack[];
+  };
+  
+export type Pack = {
+    units: number;
+    price: number;
+    name: string;
+    description: string;
+    imageUrl: string;
+};
+
+export type CreateCatalogParameters = CatalogBase & {
     totalCollectionItems: number;
-    selectablePacks: {
-        units: number;
-        price: number;
-        name: string;
-        description: string;
-        imageUrl: string;
-    }[];
+}
+
+export type CreateUnlimitedCatalogParameters = CatalogBase & {
+    items: CreateItemsCollectionItem[];
+    collectionId: string;
 }
 
 export type Catalog = {

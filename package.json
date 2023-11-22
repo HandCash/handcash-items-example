@@ -16,6 +16,7 @@
     "CommitItemCreationOrder": "tsc && node --no-warnings dist/scripts/createItems/CommitItemCreationOrder.js",
     "InscribeItems": "tsc && node --no-warnings dist/scripts/createItems/InscribeItems.js",
     "createCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateCatalog.js",
+    "createUnlimitedCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateUnlimitedCatalog.js",
     "addCollectionOrderItemsToCatalog": "tsc && node --no-warnings dist/scripts/catalog/AddCollectionOrderItemsToCatalog.js",
     "airdropItems": "tsc && node --no-warnings dist/scripts/airdrop/AirdropItems.js",
     "transferSingleItem": "tsc && node --no-warnings dist/scripts/transfer/TransferSingleItem.js",
