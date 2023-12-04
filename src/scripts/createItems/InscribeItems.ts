@@ -1,7 +1,5 @@
 import {ComponentsFactory} from "../../ComponentsFactory.js";
 import {Argument, Command} from "commander";
-import {inscribeItems} from "./InscribeCollectionItems.js";
-import { Types } from "@handcash/handcash-connect";
 import pLimit from "p-limit";
 
 
