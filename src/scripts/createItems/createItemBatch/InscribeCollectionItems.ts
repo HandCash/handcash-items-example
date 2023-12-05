@@ -1,4 +1,4 @@
-import {ComponentsFactory} from "../../ComponentsFactory.js";
+import {ComponentsFactory} from "../../../ComponentsFactory.js";
 import {Types} from "@handcash/handcash-connect";
 
 const handCashMinter = ComponentsFactory.getHandCashMinter();

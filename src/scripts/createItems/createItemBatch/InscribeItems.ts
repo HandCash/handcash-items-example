@@ -1,4 +1,4 @@
-import {ComponentsFactory} from "../../ComponentsFactory.js";
+import {ComponentsFactory} from "../../../ComponentsFactory.js";
 import {Argument, Command} from "commander";
 import pLimit from "p-limit";
 

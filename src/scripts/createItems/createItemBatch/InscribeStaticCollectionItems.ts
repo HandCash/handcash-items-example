@@ -1,6 +1,6 @@
-import {ComponentsFactory} from "../../ComponentsFactory.js";
+import {ComponentsFactory} from "../../../ComponentsFactory.js";
 import {Argument, Command} from "commander";
-import {inscribeItems} from "./InscribeCollectionItems.js";
+import {inscribeItems} from "./InscribeCollectionItems.js"
 
 async function main() {
     const [collectionId] = new Command()
