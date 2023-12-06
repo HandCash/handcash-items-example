@@ -148,4 +148,3 @@ export type Item = {
     isHandcashCreated: boolean;
     isVerified: boolean;
 };
-

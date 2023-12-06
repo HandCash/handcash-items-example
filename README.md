@@ -16,11 +16,6 @@ HANDCASH_APP_ID=<your-app-id>
 HANDCASH_APP_SECRET=<your-app-secret>
 HANDCASH_AUTH_TOKEN=<your-business-wallet-auth-token>
 
-# Prod values
-HANDCASH_BASE_API_ENDPOINT=https://cloud.handcash.io
-CLOUDINARY_API_KEY=544588249773336
-CLOUDINARY_CLOUD_NAME=hn8pdtayf
-
 ```
 
 
@@ -33,10 +28,10 @@ Here is an example defining 3 items, quantity denontes how many of each item we 
  [Example](/assets/handcash_test/info.json)
 ```json
 [
-    {
+   {
       "edition": "Test",
       "generation": 1,
-      "image": "rafa.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
       "quantity": 3, 
       "rarity": "Mythic",
       "name": "Rafa",
@@ -45,7 +40,7 @@ Here is an example defining 3 items, quantity denontes how many of each item we 
     {
       "edition": "Test",
       "generation": 1,
-      "image": "alex.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
       "quantity": 3,
       "rarity": "Mythic",
       "name": "Alex",
@@ -54,7 +49,7 @@ Here is an example defining 3 items, quantity denontes how many of each item we 
     {
       "edition": "Test",
       "generation": 2,
-      "image": "bb.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
       "name": "Brandon Bryant",
       "quantity": 1,
       "rarity": "Mythic",
@@ -99,7 +94,7 @@ You can find an example of a custom component loader [here](src/loaders/HandCash
       "quantity": 5,
       "mediaDetails": {
         "image": {
-          "url": "./assets/dummy/images/3.png",
+          "url": "[./assets/dummy/images/3.png](https://res.cloudinary.com/handcash-iae/image/upload/v1687295380/items/HeroImage_MysteryBox_wq5iz2_lceykv.jpg)",
           "contentType": "image/png"
         }
       },
@@ -136,20 +131,20 @@ for example the item loader below will create 10 example NFTs of the handcash te
 ### 2. Create an inscribe a collection
 
 ```bash
-npm run inscribeCollection
+npm run CreateCollection
 ```
 
 ### 2. Create an inscribe collection item
 
 ```bash
-npm run InscribeStaticCollectionItems <collection_id>
+npm run InscribeCollectionInBatch <collection_id>
 ```
 
 ## Add items to an existing collection
 update `info.json` and in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
 
 ```bash
-npm run InscribeStaticCollectionItems <collection_id>
+npm run InscribeCollectionInBatch <collection_id>
 ```
 
 ## Airdrop a collection
