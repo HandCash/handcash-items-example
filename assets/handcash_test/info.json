@@ -5,6 +5,7 @@
       "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
       "quantity": 3, 
       "rarity": "Mythic",
+      "user": "612cba70e108780b4f6817ad",
       "name": "Rafa",
       "country": "Spain"
     },
@@ -15,6 +16,7 @@
       "quantity": 3,
       "rarity": "Mythic",
       "name": "Alex",
+      "user": "6213a44bf2936f711c8d19d3",
       "country": "Andorra"
     },
     {
@@ -22,6 +24,7 @@
       "generation": 2,
       "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
       "name": "Brandon Bryant",
+      "user": "6168647b6195900b188eae60",
       "quantity": 1,
       "rarity": "Mythic",
       "country": "United States"
@@ -41,6 +44,7 @@
       "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/ed483kozrfzqkavuu7ne.png",
       "quantity": 1,
       "rarity": "Mythic",
+      "user": "616f09fef125e10b1bffef99",
       "name": "Ivan",
       "country": "Slovenia"
     },
@@ -60,6 +64,7 @@
       "quantity": 1,
       "rarity": "Mythic",
       "name": "Jay",
+      "user": "62fe7900db1020ea43f12f9a",
       "country": "United States"
     }
   ]

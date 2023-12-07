@@ -43,6 +43,7 @@ export class HandCashItemsLoader extends AbstractItemsLoader {
         return {
             item: {
                 name: itemData['name'],
+                user: itemData['user'] ? itemData['user'] : undefined,
                 rarity: itemData['rarity'],
                 attributes: this.getItemAttributes(itemData),
                 mediaDetails: {
