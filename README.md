@@ -134,29 +134,18 @@ for example the item loader below will create 10 example NFTs of the handcash te
 npm run CreateCollection
 ```
 
-### 2. Create an inscribe collection item
+### 2. Create item items inside the collection
 
+#### There are two methods of creating items, creating methods in a single api call and creating items in batches 
+
+#### Creating Items in a single API call, use this method if you are creating less than 100 items at once 
+```bash
+npm run CreateItems <collection_id>
+```
+
+#### Creating Items in batches, use this if you are more than 100 of items at once.  A bulk mint for example.  
 ```bash
 npm run InscribeCollectionInBatch <collection_id>
-```
-
-## Add items to an existing collection
-update `info.json` and in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
-
-```bash
-npm run InscribeCollectionInBatch <collection_id>
-```
-
-## Airdrop a collection
-
-```bash
-npm run airdropItems <create_items_order_id>
-```
-
-## Create a catalog of packs
-
-```bash
-npm run createCatalog <create_items_order_id>
 ```
 
 ## Transfer an item
@@ -174,10 +163,6 @@ npm run getInscriptionOrder <order_id>
 
 ## Util Methods 
 
-## Upload image
-```bash
-npm run uploadImage <pathToFile>
-```
 ## Send All Order Items to Handle
 ```bash
 npm run sendAllOrderItems <orderId> <handle> 
