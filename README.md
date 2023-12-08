@@ -128,22 +128,23 @@ for example the item loader below will create 10 example NFTs of the handcash te
 
 ```
 
-### 2. Create an inscribe a collection
+### 2. Create a collection
 
+Creates a Collection as defined in your items loader
 ```bash
 npm run CreateCollection
 ```
 
-### 2. Create item items inside the collection
+### 3. Create items inside the collection
 
 #### There are two methods of creating items, creating methods in a single api call and creating items in batches 
 
-#### Creating Items in a single API call, use this method if you are creating less than 100 items at once 
+Creating Items in a single API call, use this method if you are creating less than 100 items at once 
 ```bash
 npm run CreateItems <collection_id>
 ```
 
-#### Creating Items in batches, use this if you are more than 100 of items at once.  A bulk mint for example.  
+Creating Items in a single API call, use this method if you are creating less than 100 items at once 
 ```bash
 npm run InscribeCollectionInBatch <collection_id>
 ```
