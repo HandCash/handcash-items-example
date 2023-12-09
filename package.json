@@ -10,6 +10,7 @@
     "CreateItems": "tsc && node --no-warnings dist/scripts/createItems/ProcessFullItemCreationOrder.js",
     "GetInscriptionOrder": "tsc && node --no-warnings dist/scripts/createItems/GetInscriptionOrder.js",
     "InscribeCollectionInBatch": "tsc && node --no-warnings dist/scripts/createItems/createItemBatch/InscribeStaticCollectionItems.js",
+    "CompleteCollectionInscriptionBatches": "tsc && node --no-warnings dist/scripts/createItems/createItemBatch/InscribeItems.js",
     "sendAllOrderItems": "tsc && node --no-warnings dist/scripts/util/sendAllOrderItems.js",
     "createCatalog": "tsc && node --no-warnings dist/scripts/catalog/CreateCatalog.js",
     "addCollectionOrderItemsToCatalog": "tsc && node --no-warnings dist/scripts/catalog/AddCollectionOrderItemsToCatalog.js",
