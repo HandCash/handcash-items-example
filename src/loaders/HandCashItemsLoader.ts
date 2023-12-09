@@ -47,14 +47,19 @@ export class HandCashItemsLoader extends AbstractItemsLoader {
                 attributes: this.getItemAttributes(itemData),
                 mediaDetails: {
                     image: {
-                        url: `${this.folderPath}/images/${itemData['image']}`,
-                        contentType: 'image/png',
+                        url: itemData['image'],
+                        contentType: await this.getContentType(itemData['image']),
                     },
                 },
                 color: this.getColorFromName(itemData['name']),
             },
             quantity: itemData['quantity'],
         };
+    }
+
+    private async getContentType(url: string): Promise<string> {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.headers.get('content-type') || '';
     }
 
     private getItemAttributes(itemData: any): ItemAttribute[] {

@@ -2,7 +2,7 @@
     {
       "edition": "Test",
       "generation": 1,
-      "image": "rafa.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
       "quantity": 3, 
       "rarity": "Mythic",
       "name": "Rafa",
@@ -11,7 +11,7 @@
     {
       "edition": "Test",
       "generation": 1,
-      "image": "alex.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
       "quantity": 3,
       "rarity": "Mythic",
       "name": "Alex",
@@ -20,7 +20,7 @@
     {
       "edition": "Test",
       "generation": 2,
-      "image": "bb.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
       "name": "Brandon Bryant",
       "quantity": 1,
       "rarity": "Mythic",
@@ -29,7 +29,7 @@
     {
       "edition": "Test",
       "generation": 1,
-      "image": "bc.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/ky9rw0wc3ofdpsnkopbg.png",
       "quantity": 1,
       "rarity": "Mythic",
       "name": "Brandon Cryderman",
@@ -38,7 +38,7 @@
     {
       "edition": "Test",
       "generation": 1,
-      "image": "ivan.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/ed483kozrfzqkavuu7ne.png",
       "quantity": 1,
       "rarity": "Mythic",
       "name": "Ivan",
@@ -47,7 +47,7 @@
     {
       "edition": "Test",
       "generation": 1,
-      "image": "brett.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/hoxxcjz4ezwjoh4dyzc3.png",
       "quantity": 1,
       "rarity": "Mythic",
       "name": "Brett",
@@ -56,7 +56,7 @@
     {
       "edition": "Test",
       "generation": 1,
-      "image": "jay.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465893/items/bcbfq4gme4meurtouhxz.png",
       "quantity": 1,
       "rarity": "Mythic",
       "name": "Jay",
