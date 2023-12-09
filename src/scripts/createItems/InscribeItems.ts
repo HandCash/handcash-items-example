@@ -25,7 +25,7 @@ async function main() {
   }
 
   async function inscribeItemsInBatches (order: any, batchNumber: number) {
-    const limit = pLimit(10);
+    const limit = pLimit(4);
     await Promise.allSettled(Array(Math.floor(order.pendingInscriptions/ 38)).fill((0)).map(() => limit(async () => {
         console.log('Running batch', batchNumber)
         batchNumber = batchNumber + 1;
