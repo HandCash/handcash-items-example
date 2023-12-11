@@ -10,11 +10,14 @@ async function main() {
       .parse(process.argv)
       .args;
 
-   const order = await handCashMinter.commitOrder(orderId);
-   console.log('Order committed, pay the invoice here to continue', order.payment.paymentRequestUrl);
-   console.log('Then inscribe items with npm run InscribeItems', orderId);
+   const order = await commitOrder(orderId);
+   console.log(`- ⏳ Order cost ${order.payment!.amountInUSD} USD.`);
+   console.log(`Run npm run PayOrder ${order.id} to pay the order`);
   }
   
+export async function commitOrder(orderId: string) {
+    return handCashMinter.commitOrder(orderId);
+};
 
 (async () => {
     try {

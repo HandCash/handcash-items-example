@@ -1,8 +1,10 @@
-import {CreateItemsParameters} from "./Types.js";
-import {CreateCatalogParameters} from "../services/handcash/Types.js";
+import {Types} from "@handcash/handcash-connect";
 
+import {CreateCatalogParameters} from "../services/handcash/Types.js";
 export abstract class AbstractItemsLoader {
-    abstract loadItems(): Promise<CreateItemsParameters>;
+    abstract loadItems(): Promise<Types.CreateItemMetadata[]>;
+
+    abstract loadCollection(): Promise<Types.CreateCollectionMetadata>;
 
     abstract loadCatalog(): Promise<CreateCatalogParameters>;
 

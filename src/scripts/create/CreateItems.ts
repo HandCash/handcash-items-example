@@ -8,25 +8,11 @@ async function main() {
       .parse(process.argv)
       .args;
   
-    const collectionDefinition = await ComponentsFactory.loadCollectionDefinition();
-    const params = {
+    const result = await handCashMinter.createItems({
         referencedCollection: collectionId,
-        items: collectionDefinition.items.map((item: any) => {
-            item.item.quantity = item.quantity;
-            item.item.mediaDetails.image.imageHighResUrl = item.item.mediaDetails.image.url;
-            item.item.mediaDetails.image.url = 'https://cdni.iconscout.com/illustration/free/preview/free-happy-stick-figure-3180134-2673766.png?f=webp&h=700';
-            item.item.royalties = [{
-                type: 'paymail',
-                percentage: 10,
-                destination: 'example@championstcg.com'
-            }]
-            return item.item;
-        }),
+        items: await ComponentsFactory.getItemsLoader().loadItems(),
         itemCreationOrderType: 'collectionItem'
-    };
-    const result = await handCashMinter.create(params);
-    console.log(result)
-    console.log(`Items Creation Id: ${result.items}`);
+    });
     console.log(`Items Minted: ${result.items.length}`);
   }
   
