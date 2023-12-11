@@ -32,9 +32,4 @@ export class ComponentsFactory {
             env: Environments.prod,
         }).getAccountFromAuthToken(handCashConfig.authToken);
     }
-
-    static loadCollectionDefinition() : Promise<Types.CollectionDefinition> {
-        const itemsLoader = this.getItemsLoader();
-        return itemsLoader.loadItems();
-    };
 }
