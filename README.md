@@ -78,7 +78,7 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 
   const collectionId = "657762fc2acbecc109d8c1fb";
 
-  const creationOrderResult = await handCashMinter.createCollection({
+  const creationOrderResult = await handCashMinter.createItems({
     items: [
       {
         name: "Rafa",
@@ -137,7 +137,7 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
         quantity: 1
       }
     ],
-    itemCreationOrderType: 'collection'
+    itemCreationOrderType: 'collectionItem'
   });
 
   console.log(`Items Minted: ${creationOrderResult.items.length}`);
