@@ -158,7 +158,7 @@ dotenv.config();
 
 const handcashAccount = new HandCashConnect({
     appId: process.env.HANDCASH_APP_ID
-    appId: process.env.HANDCASH_APP_SECRET
+    appSecret: process.env.HANDCASH_APP_SECRET
 }).getAccountFromAuthToken(process.env.HANDCASH_AUTH_TOKEN);
 
 (async () => {
