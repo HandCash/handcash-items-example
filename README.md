@@ -60,7 +60,7 @@ After running the script, you should see the following output in the console:
 
 
 ## Create Items
-You will need a collection id to add the items to for example `6578857e01a833fb337aaa3b`
+You will need a collection id to add the items to `6578857e01a833fb337aaa3b`
 
 
 ```javascript
