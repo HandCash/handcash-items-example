@@ -60,7 +60,7 @@ After running the script, you should see the following output in the console:
 
 
 ## Create Items
-You will need a collection id to add the items to for example `6578857e01a833fb337aaa3b`
+You will need a collection id to add the items to `6578857e01a833fb337aaa3b`
 
 
 ```javascript
@@ -78,7 +78,7 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 
   const collectionId = "657762fc2acbecc109d8c1fb";
 
-  const creationOrderResult = await handCashMinter.createCollection({
+  const creationOrderResult = await handCashMinter.createItems({
     items: [
       {
         name: "Rafa",
@@ -137,7 +137,7 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
         quantity: 1
       }
     ],
-    itemCreationOrderType: 'collection'
+    itemCreationOrderType: 'collectionItem'
   });
 
   console.log(`Items Minted: ${creationOrderResult.items.length}`);
@@ -158,7 +158,7 @@ dotenv.config();
 
 const handcashAccount = new HandCashConnect({
     appId: process.env.HANDCASH_APP_ID
-    appId: process.env.HANDCASH_APP_SECRET
+    appSecret: process.env.HANDCASH_APP_SECRET
 }).getAccountFromAuthToken(process.env.HANDCASH_AUTH_TOKEN);
 
 (async () => {
