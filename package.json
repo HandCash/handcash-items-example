@@ -8,6 +8,7 @@
     "build": "tsc",
     "CreateCollection": "tsc && node --no-warnings dist/scripts/create/CreateCollection.js",
     "CreateItems": "tsc && node --no-warnings dist/scripts/create/CreateItems.js",
+    "GetInventory": "tsc && node --no-warnings dist/scripts/getInventory.js",
     "GetInscriptionOrder": "tsc && node --no-warnings dist/scripts/create/GetInscriptionOrder.js",
     "CreateItemsInBatches": "tsc && node --no-warnings dist/scripts/create/createItemBatch/CreateItemsInBatches.js",
     "CreateItemOrder": "tsc && node --no-warnings dist/scripts/create/createItemBatch/CreateItemOrder.js",

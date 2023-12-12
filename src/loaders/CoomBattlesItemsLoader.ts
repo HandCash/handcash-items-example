@@ -1,7 +1,5 @@
 import {AbstractItemsLoader} from "./AbstractItemsLoader.js";
 import * as fs from "fs";
-import {CreateItemParameters} from "./Types.js";
-import {CreateCatalogParameters} from "../services/handcash/Types.js";
 import {handCashConfig} from "../Settings.js";
 import {Types} from "@handcash/handcash-connect";
 
@@ -21,6 +19,10 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         const data = JSON.parse(fs.readFileSync(`${this.folderPath}/info.json`, 'utf8'));
         return await Promise.all(data.map((item: any) => this.loadItemFromRawItemData(item)));
     }
+
+    async loadCollection(): Promise<Types.CreateCollectionMetadata> {
+        throw new Error('Method not implemented.');
+    };
 
     async loadCatalog(): Promise<Types.CreateCollectionMetadata> {
         return {
