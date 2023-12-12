@@ -2,70 +2,38 @@
     {
       "edition": "Test",
       "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1702398977/items/jyn2qqyqyepqhqi9p661.webp",
+      "cacheImage": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
       "quantity": 3, 
       "rarity": "Mythic",
       "user": "612cba70e108780b4f6817ad",
       "name": "Rafa",
-      "country": "Spain"
+      "country": "Spain",
+      "contentType": "image/webp"
     },
     {
       "edition": "Test",
       "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
+      "cacheImage": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
       "quantity": 3,
       "rarity": "Mythic",
       "name": "Alex",
       "user": "6213a44bf2936f711c8d19d3",
-      "country": "Andorra"
+      "country": "Andorra",
+      "contentType": "image/webp"
     },
     {
       "edition": "Test",
       "generation": 2,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
+      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
+      "cacheImage": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
       "name": "Brandon Bryant",
       "user": "6168647b6195900b188eae60",
       "quantity": 1,
       "rarity": "Mythic",
-      "country": "United States"
-    },
-    {
-      "edition": "Test",
-      "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/ky9rw0wc3ofdpsnkopbg.png",
-      "quantity": 1,
-      "rarity": "Mythic",
-      "name": "Brandon Cryderman",
-      "country": "Canada"
-    },
-    {
-      "edition": "Test",
-      "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/ed483kozrfzqkavuu7ne.png",
-      "quantity": 1,
-      "rarity": "Mythic",
-      "user": "616f09fef125e10b1bffef99",
-      "name": "Ivan",
-      "country": "Slovenia"
-    },
-    {
-      "edition": "Test",
-      "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/hoxxcjz4ezwjoh4dyzc3.png",
-      "quantity": 1,
-      "rarity": "Mythic",
-      "name": "Brett",
-      "country": "United States"
-    },
-    {
-      "edition": "Test",
-      "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465893/items/bcbfq4gme4meurtouhxz.png",
-      "quantity": 1,
-      "rarity": "Mythic",
-      "name": "Jay",
-      "user": "62fe7900db1020ea43f12f9a",
-      "country": "United States"
+      "country": "United States",
+      "contentType": "image/webp"
     }
   ]
   

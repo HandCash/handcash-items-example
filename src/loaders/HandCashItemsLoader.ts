@@ -44,7 +44,8 @@ export class HandCashItemsLoader extends AbstractItemsLoader {
                 mediaDetails: {
                     image: {
                         url: itemData['image'],
-                        contentType: await this.getContentType(itemData['image']),
+                        imageHighResUrl: itemData['cacheImage'],
+                        contentType: itemData['contentType'],
                     },
                 },
                 color: this.getColorFromName(itemData['name']),
