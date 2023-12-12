@@ -1,8 +1,9 @@
 import {AbstractItemsLoader} from "./AbstractItemsLoader.js";
 import * as fs from "fs";
-import {CreateItemParameters, CreateItemsParameters} from "./Types.js";
-import {CreateCatalogParameters, ItemAttribute} from "../services/handcash/Types.js";
+import {CreateCatalogParameters} from "../services/handcash/Types.js";
 import {handCashConfig} from "../Settings.js";
+import {Types} from "@handcash/handcash-connect";
+
 
 type Params = {
     folderPath: string;
@@ -16,45 +17,40 @@ export class HandCashItemsLoader extends AbstractItemsLoader {
         this.folderPath = folderPath;
     }
 
-    async loadItems(): Promise<CreateItemsParameters> {
-        return this.loadFromFile();
-    }
-
-    private async loadFromFile(): Promise<CreateItemsParameters> {
+    async loadItems(): Promise<Types.CreateItemMetadata[]> {
         const data = JSON.parse(fs.readFileSync(`${this.folderPath}/info.json`, 'utf8'));
-        const items = await Promise.all(data.map((item: any) => this.loadItemFromRawItemData(item)));
-        return {
-            items,
-            collection: {
-                name: 'HandCash Team Caricatures',
-                description: 'A unique collection of caricatures of the HandCash team',
-                mediaDetails: {
-                    image: {
-                        url: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685141160/round-handcash-logo_cj47fp_xnteyo_oy3nbd.png',
-                        contentType: 'image/png',
-                    },
-                },
-                totalQuantity: items.length,
-            }
-        }
+        return await Promise.all(data.map((item: any) => this.loadItemFromRawItemData(item)));
     }
 
-    private async loadItemFromRawItemData(itemData: any): Promise<CreateItemParameters> {
+    async loadCollection(): Promise<Types.CreateCollectionMetadata> {
         return {
-            item: {
+            name: 'HandCash Team Caricatures',
+            description: 'A unique collection of caricatures of the HandCash team',
+            mediaDetails: {
+                image: {
+                    url: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685141160/round-handcash-logo_cj47fp_xnteyo_oy3nbd.png',
+                    contentType: 'image/png',
+                },
+            },
+        }
+    };
+
+    private async loadItemFromRawItemData(itemData: any): Promise<Types.CreateItemMetadata> {
+        return {
                 name: itemData['name'],
+                user: itemData['user'] ? itemData['user'] : undefined,
                 rarity: itemData['rarity'],
                 attributes: this.getItemAttributes(itemData),
                 mediaDetails: {
                     image: {
                         url: itemData['image'],
-                        contentType: await this.getContentType(itemData['image']),
+                        imageHighResUrl: itemData['cacheImage'],
+                        contentType: itemData['contentType'],
                     },
                 },
                 color: this.getColorFromName(itemData['name']),
-            },
-            quantity: itemData['quantity'],
-        };
+                quantity: itemData['quantity'],
+            };
     }
 
     private async getContentType(url: string): Promise<string> {
@@ -62,7 +58,7 @@ export class HandCashItemsLoader extends AbstractItemsLoader {
         return response.headers.get('content-type') || '';
     }
 
-    private getItemAttributes(itemData: any): ItemAttribute[] {
+    private getItemAttributes(itemData: any): Types.ItemAttributeMetadata[] {
         return [
             {
                 name: 'Edition',

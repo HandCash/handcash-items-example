@@ -8,18 +8,11 @@ async function main() {
       .parse(process.argv)
       .args;
   
-    const collectionDefinition = await ComponentsFactory.loadCollectionDefinition();
-    const params = {
+    const result = await handCashMinter.createItems({
         referencedCollection: collectionId,
-        items: collectionDefinition.items.map((item: any) => {
-            item.item.quantity = item.quantity;
-            return item.item;
-        }),
+        items: await ComponentsFactory.getItemsLoader().loadItems(),
         itemCreationOrderType: 'collectionItem'
-    };
-    const result = await handCashMinter.createCollectionItems(params);
-    console.log(result)
-    console.log(`Items Creation Id: ${result.itemCreationOrderId}`);
+    });
     console.log(`Items Minted: ${result.items.length}`);
   }
   

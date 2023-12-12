@@ -1,7 +1,5 @@
 import {AbstractItemsLoader} from "./AbstractItemsLoader.js";
 import * as fs from "fs";
-import {CreateItemParameters} from "./Types.js";
-import {CreateCatalogParameters} from "../services/handcash/Types.js";
 import {handCashConfig} from "../Settings.js";
 import {Types} from "@handcash/handcash-connect";
 
@@ -17,11 +15,16 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         this.folderPath = folderPath;
     }
 
-    async loadItems(): Promise<Types.CollectionDefinition> {
-        return this.loadFromFile();
+    async loadItems(): Promise<Types.CreateItemMetadata[]> {
+        const data = JSON.parse(fs.readFileSync(`${this.folderPath}/info.json`, 'utf8'));
+        return await Promise.all(data.map((item: any) => this.loadItemFromRawItemData(item)));
     }
 
-    async loadCatalog(): Promise<CreateCatalogParameters> {
+    async loadCollection(): Promise<Types.CreateCollectionMetadata> {
+        throw new Error('Method not implemented.');
+    };
+
+    async loadCatalog(): Promise<Types.CreateCollectionMetadata> {
         return {
             appId: handCashConfig.appId,
             title: 'Coom Battles Starter Packs',
@@ -62,29 +65,12 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
         };
     }
 
-    private async loadFromFile(): Promise<Types.CollectionDefinition> {
-        const data = JSON.parse(fs.readFileSync(`${this.folderPath}/info.json`, 'utf8'));
-        const items = data.map((item: any) => this.loadItemFromRawItemData(item));
-        return {
-            items,
-            collection: {
-                name: 'Champions TCG - Generation 2',
-                description: '149 champions and 14 new abilities',
-                mediaDetails: {
-                    image: {
-                        url: 'https://res.cloudinary.com/hn8pdtayf/image/upload/v1686129013/items/Final_Icon_t9fo6m_cqt3s9_ags7cl.png',
-                        contentType: 'image/png',
-                    },
-                },
-                totalQuantity: items.reduce((total: number, item: CreateItemParameters) => total + item.quantity, 0),
-            }
-        }
-    }
 
     private loadItemFromRawItemData(itemData: any): Types.ItemsMetadataWithQuantity {
         return {
             item: {
                 name: itemData['name'],
+                user: itemData['user'] ? itemData['user'] : undefined,
                 rarity: itemData['rarity'],
                 attributes: this.getItemAttributes(itemData),
                 mediaDetails: {

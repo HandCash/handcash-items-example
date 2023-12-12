@@ -1,6 +1,8 @@
-# HandCash Ordinals Minter
+# HandCash Items Example Project
 
 ## Getting started
+This project demo's examples of how to create and manage items for your Handcash Application.  You may want to take different pieces and scripts of this repo and add them directly into your game logic.
+
 
 ### Install dependencies
 
@@ -18,168 +20,206 @@ HANDCASH_AUTH_TOKEN=<your-business-wallet-auth-token>
 
 ```
 
+## Create a collection
 
-## Define your collection
-Create a json file of each Item you would like to create, the data can be in any structure.
+```javascript
+import dotenv from 'dotenv';
+import { HandCashMinter, Environments, Types, HandCashConnect } from '@handcash/handcash-connect';
 
-Here is an example defining 3 items, quantity denontes how many of each item we want to be created.
+dotenv.config();
 
+const handCashMinter = HandCashMinter.fromAppCredentials({
+  appId: process.env.HANDCASH_APP_ID,
+  authToken: process.env.HANDCASH_AUTH_TOKEN,
+});
 
- [Example](/assets/handcash_test/info.json)
-```json
-[
-   {
-      "edition": "Test",
-      "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
-      "quantity": 3, 
-      "rarity": "Mythic",
-      "name": "Rafa",
-      "country": "Spain"
-    },
-    {
-      "edition": "Test",
-      "generation": 1,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
-      "quantity": 3,
-      "rarity": "Mythic",
-      "name": "Alex",
-      "country": "Andorra"
-    },
-    {
-      "edition": "Test",
-      "generation": 2,
-      "image": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
-      "name": "Brandon Bryant",
-      "quantity": 1,
-      "rarity": "Mythic",
-      "country": "United States"
-    }
-]
-
-```
-
-
-
-### Create Custom Component Loader 
-Because data can be in many different forms, you must create a custom component loader to map your data to the [expected structure](src/loaders/Types.ts) the only required fields for each item are name and image.
-You can find more about this configuration file at https://docs.handcash.io/docs/collection-metadata
-
-
-#### Some tips
-- Add all images including `image` and `cacheImage` referenced in your info.json to the images directory. 1 MB is the maximum size for the `image`.
-- Cache image is an optional higher res image that does not go on chain but is set as the Items image internally. No limit for size of `cacheImage`.
-
-
-
-You can find an example of a custom component loader [here](src/loaders/HandCashItemsLoader.ts)
-
-```json
-{
-  "collection": {
-    "name": "Example collection",
-    "description": "A collection with example items",
-    "mediaDetails": {
-      "image": {
-        "url": "https://res.cloudinary.com/handcash-iae/image/upload/v1687295380/items/HeroImage_MysteryBox_wq5iz2_lceykv.jpg",
-        "contentType": "image/png"
+(async () => {
+  const creationOrderResult = await handCashMinter.createCollection({
+    items: [{
+      name: 'HandCash Team Caricatures',
+      description: 'A unique collection of caricatures of the HandCash team',
+      mediaDetails: {
+        image: {
+          url: 'https://res.cloudinary.com/handcash-iae/image/upload/v1685141160/round-handcash-logo_cj47fp_xnteyo_oy3nbd.png',
+          contentType: 'image/png'
+        }
       }
-    }
-  },
-  "items": [
-    {
-      "name": "An example item",
-      "rarity": "Common",
-      "color": "#B19334",
-      "quantity": 5,
-      "mediaDetails": {
-        "image": {
-          "url": "[./assets/dummy/images/3.png](https://res.cloudinary.com/handcash-iae/image/upload/v1687295380/items/HeroImage_MysteryBox_wq5iz2_lceykv.jpg)",
-          "contentType": "image/png"
-        }
+    }],
+    itemCreationOrderType: 'collection'
+  });
+
+  console.log(`Collection Created, collectionId: ${creationOrderResult.items[0].id}`);
+})();
+```
+
+### Expected Output
+
+After running the script, you should see the following output in the console:
+
+> Collection Created, collectionId: 6578857e01a833fb337aaa3b
+
+
+## Create Items
+You will need a collection id to add the items to `6578857e01a833fb337aaa3b`
+
+
+```javascript
+import dotenv from 'dotenv';
+import { HandCashMinter } from '@handcash/handcash-connect';
+
+dotenv.config();
+
+const handCashMinter = HandCashMinter.fromAppCredentials({
+  appId: process.env.HANDCASH_APP_ID,
+  authToken: process.env.HANDCASH_AUTH_TOKEN,
+});
+
+(async () => {
+
+  const collectionId = "657762fc2acbecc109d8c1fb";
+
+  const creationOrderResult = await handCashMinter.createItems({
+    items: [
+      {
+        name: "Rafa",
+        user: "612cba70e108780b4f6817ad",
+        rarity: "Mythic",
+        attributes: [
+          { name: "Edition", value: "Test", displayType: "string" },
+          { name: "Generation", value: "1", displayType: "string" },
+          { name: "Country", value: "Spain", displayType: "string" }
+        ],
+        mediaDetails: {
+          image: {
+            url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398977/items/jyn2qqyqyepqhqi9p661.webp",
+            imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
+            contentType: "image/webp"
+          }
+        },
+        color: "#bf9078",
+        quantity: 3
       },
-      "attributes": [
-        {
-          "name": "Edition",
-          "value": "First",
-          "displayType": "string"
-        }
-      ]
-    }
-  ]
-}
+      {
+        name: "Alex",
+        user: "6213a44bf2936f711c8d19d3",
+        rarity: "Mythic",
+        attributes: [
+          { name: "Edition", value: "Test", displayType: "string" },
+          { name: "Generation", value: "1", displayType: "string" },
+          { name: "Country", value: "Andorra", displayType: "string" }
+        ],
+        mediaDetails: {
+          image: {
+            url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
+            imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
+            contentType: "image/webp"
+          }
+        },
+        color: "#73c9ac",
+        quantity: 3
+      },
+      {
+        name: "Brandon Bryant",
+        rarity: "Mythic",
+        attributes: [
+          { name: "Edition", value: "Test", displayType: "string" },
+          { name: "Generation", value: "2", displayType: "string" },
+          { name: "Country", value: "United States", displayType: "string" }
+        ],
+        mediaDetails: {
+          image: {
+            url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
+            imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
+            contentType: "image/webp"
+          }
+        },
+        color: "#adeaf5",
+        quantity: 1
+      }
+    ],
+    itemCreationOrderType: 'collectionItem'
+  });
+
+  console.log(`Items Minted: ${creationOrderResult.items.length}`);
+})();
 
 ```
 
+In this example 7 items in total are created. 3 "Rafa's" are created to the user with id `612cba70e108780b4f6817ad` , 3 "Alex's" are created to the user with id `6213a44bf2936f711c8d19d3` and 1 "Brandon Bryant" is created to the applications business wallet because no user was specified.  
 
+## Get Inventory 
+`HANDCASH_AUTH_TOKEN` can be the business wallet auth token or any user auth token that has connected to your application. 
 
-### 1. Configure Component Loader 
+```javascript
+import dotenv from 'dotenv';
+import { HandCashConnect} from "@handcash/handcash-connect";
 
-in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
-for example the item loader below will create 10 example NFTs of the handcash team
+dotenv.config();
 
-```
- static getItemsLoader(): AbstractItemsLoader {
-        // 10 NFT example
-        return new HandCashItemsLoader({
-             folderPath: './assets/handcash_test',
-        });
-    }
+const handcashAccount = new HandCashConnect({
+    appId: process.env.HANDCASH_APP_ID
+    appSecret: process.env.HANDCASH_APP_SECRET
+}).getAccountFromAuthToken(process.env.HANDCASH_AUTH_TOKEN);
 
-```
-
-### 2. Create an inscribe a collection
-
-```bash
-npm run CreateCollection
-```
-
-### 2. Create an inscribe collection item
-
-```bash
-npm run InscribeCollectionInBatch <collection_id>
-```
-
-## Add items to an existing collection
-update `info.json` and in the [ComponentsFactory](/src/ComponentsFactory.ts) ensure your custom Components loader is set in the `getItemsLoader`
-
-```bash
-npm run InscribeCollectionInBatch <collection_id>
+(async () => {
+ const filters = {
+        collectionId: "657762fc2acbecc109d8c1fb",
+        searchString: "Brandon Bryant",
+        from: 0,
+        to: 50,
+        fetchAttributes: false,
+        sort: "createdAt",
+        order: "asc"
+    };
+    const items = await handcashAccount.items.getItemsInventory(filters);
+    console.log(items);
+})(); 
 ```
 
-## Airdrop a collection
+### Filters
+- **from**: An integer specifying the starting index for items to fetch. Default is 0.
+- **to**: An integer specifying the ending index for items to fetch. Default is 20. Must be greater than 'from' and less than 'from + 501'.
+- **collectionId**: A unique identifier for the collection to fetch items from.
+- **searchString**: A string to search within item names, descriptions, etc.
+- **fetchAttributes**: A boolean to decide whether to fetch attributes of items. Default is true.
+- **attributes**: A filter to specify certain item attributes.
+- **appId**: The application ID, used to filter items associated with a specific app.
 
-```bash
-npm run airdropItems <create_items_order_id>
+### Sorters
+- **sort**: A string specifying the field to sort by. Possible values are `["name"]`
+- **order**: A string specifying the sorting order, either 'asc' (ascending) or 'desc' (descending). This filter is required if 'sort' is used.
+
+
+## TransferItem
+
+```javascript
+import dotenv from 'dotenv';
+import { HandCashConnect} from "@handcash/handcash-connect";
+
+dotenv.config();
+
+const handcashAccount = new HandCashConnect({
+    appId: process.env.HANDCASH_APP_ID
+    appId: process.env.HANDCASH_APP_SECRET
+}).getAccountFromAuthToken(process.env.HANDCASH_AUTH_TOKEN);
+
+(async () => {
+ const filters = {
+        collectionId: "657762fc2acbecc109d8c1fb",
+        searchString: "Brandon Bryant",
+        from: 0,
+        to: 1,
+    };
+    const receiverUserId = "612cba70e108780b4f6817ad";
+    const items = await handcashAccount.items.getItemsInventory(filters);
+    const result = await account.items.transfer({
+        destinationsWithOrigins: [
+            {
+              destination: receiverUserId,
+              origins: [items[0].origin]
+            }
+        ]
+    })
+    console.log(`- ✅ Item transferred to ${destination}!`);
+})(); 
 ```
-
-## Create a catalog of packs
-
-```bash
-npm run createCatalog <create_items_order_id>
-```
-
-## Transfer an item
-
-```bash
-npm run transferSingleItem <origin> <destination>
-```
-
-## Debug
-
-### Get inscription order info by order ID
-```bash
-npm run getInscriptionOrder <order_id>
-```
-
-## Util Methods 
-
-## Upload image
-```bash
-npm run uploadImage <pathToFile>
-```
-## Send All Order Items to Handle
-```bash
-npm run sendAllOrderItems <orderId> <handle> 
-```
-
