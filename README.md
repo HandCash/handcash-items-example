@@ -35,7 +35,6 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 
 (async () => {
   const creationOrderResult = await handCashMinter.createCollection({
-    items: [{
       name: 'HandCash Team Caricatures',
       description: 'A unique collection of caricatures of the HandCash team',
       mediaDetails: {
@@ -44,11 +43,10 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
           contentType: 'image/png'
         }
       }
-    }],
-    itemCreationOrderType: 'collection'
-  });
+    });
 
-  console.log(`Collection Created, collectionId: ${creationOrderResult.items[0].id}`);
+  const items = await handCashMinter.getOrderItems(creationOrder.id);
+  console.log(`Collection Created, collectionId: ${items[0].id}`);
 })();
 ```
 
@@ -80,8 +78,9 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 
   const collectionId = "657762fc2acbecc109d8c1fb";
 
-  const creationOrderResult = await handCashMinter.createItems({
-    items: [
+  const creationOrder = await handCashMinter.createItems(
+    collectionId,
+    [
       {
         user: "612cba70e108780b4f6817ad",
         name: "Rafa",
@@ -138,11 +137,11 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
         color: "#adeaf5",
         quantity: 1
       }
-    ],
-    itemCreationOrderType: 'collectionItem'
-  });
+    ]);
 
-  console.log(`Items Minted: ${creationOrderResult.items.length}`);
+  console.log(`Items order created, items are being created asynchronous`);
+  const items = await handCashMinter.getOrderItems(creationOrder.id);
+  console.log('Items created', items);
 })();
 
 ```
