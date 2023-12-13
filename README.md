@@ -58,9 +58,11 @@ After running the script, you should see the following output in the console:
 
 > Collection Created, collectionId: 6578857e01a833fb337aaa3b
 
+Next, we will add some items to this new collection so keep the collection id. 
+
 
 ## Create Items
-You will need a collection id to add the items to `6578857e01a833fb337aaa3b`
+You will need to reference a collection to add the items to. You can use the collection id from the previous step.
 
 
 ```javascript
@@ -81,8 +83,8 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
   const creationOrderResult = await handCashMinter.createItems({
     items: [
       {
-        name: "Rafa",
         user: "612cba70e108780b4f6817ad",
+        name: "Rafa",
         rarity: "Mythic",
         attributes: [
           { name: "Edition", value: "Test", displayType: "string" },
@@ -100,8 +102,8 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
         quantity: 3
       },
       {
-        name: "Alex",
         user: "6213a44bf2936f711c8d19d3",
+        name: "Alex",
         rarity: "Mythic",
         attributes: [
           { name: "Edition", value: "Test", displayType: "string" },
@@ -145,10 +147,23 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 
 ```
 
-In this example 7 items in total are created. 3 "Rafa's" are created to the user with id `612cba70e108780b4f6817ad` , 3 "Alex's" are created to the user with id `6213a44bf2936f711c8d19d3` and 1 "Brandon Bryant" is created to the applications business wallet because no user was specified.  
+In this example, 7 items in total are created:
+- 3 "Rafa's" are created to the user with id `612cba70e108780b4f6817ad`
+- 3 "Alex's" are created to the user with id `6213a44bf2936f711c8d19d3`
+- 1 "Brandon Bryant" is created to the applications business wallet because no user was specified.  
 
-## Get Inventory 
-`HANDCASH_AUTH_TOKEN` can be the business wallet auth token or any user auth token that has connected to your application. 
+## Get Inventory
+
+### Authentication
+In this example, `HANDCASH_AUTH_TOKEN` can be either:
+
+- The business wallet auth token you can get from the [developer dashboard](https://dashboard.handcash.io).
+
+  <img width="1148" alt="image" src="https://github.com/HandCash/handcash-ordinals-minter/assets/25082216/50b65ddc-b66e-4a35-9d19-b54a21e8de19">
+  
+- Any user auth token that has been connected to your application. Find out more in the Connect SDK docs: https://docs.handcash.io/docs/user-authentication-overview
+
+### Example
 
 ```javascript
 import dotenv from 'dotenv';
