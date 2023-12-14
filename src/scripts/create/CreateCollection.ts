@@ -11,7 +11,7 @@ function sleep(ms: number) {
 
 async function main() {
     const collection = await ComponentsFactory.getItemsLoader().loadCollection();
-    let creationOrder = await handCashMinter.createCollection(collection);
+    let creationOrder = await handCashMinter.createCollectionOrder(collection);
     // wait for collection to be created in the background
     while(creationOrder.status !== 'completed') {
         await sleep(1000);
