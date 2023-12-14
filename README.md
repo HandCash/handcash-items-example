@@ -34,7 +34,7 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 });
 
 (async () => {
-  const creationOrder = await handCashMinter.createCollection({
+  const creationOrder = await handCashMinter.createCollectionOrder({
       name: 'HandCash Team Caricatures',
       description: 'A unique collection of caricatures of the HandCash team',
       mediaDetails: {
@@ -78,9 +78,9 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 
   const collectionId = "657762fc2acbecc109d8c1fb";
 
-const creationOrder = await handCashMinter.createItems(
+const creationOrder = await handCashMinter.createItemsOrder({
   collectionId,
-  [
+  items: [
     {
       user: "612cba70e108780b4f6817ad",
       name: "Rafa",
@@ -137,7 +137,7 @@ const creationOrder = await handCashMinter.createItems(
       color: "#adeaf5",
       quantity: 1
     }
-  ]);
+  ]});
 
 console.log(`Items order created, items are being created asynchronous`);
 const items = await handCashMinter.getOrderItems(creationOrder.id);

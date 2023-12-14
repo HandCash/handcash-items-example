@@ -15,7 +15,7 @@ async function main() {
       .args;
   
     const itemsToCreate = await ComponentsFactory.getItemsLoader().loadItems();
-    let creationOrder = await handCashMinter.createItems(collectionId, itemsToCreate);
+    let creationOrder = await handCashMinter.createItemsOrder({ collectionId, items: itemsToCreate});
     // wait for collection to be created in the background
     while(creationOrder.status !== 'completed') {
         await sleep(1000);
