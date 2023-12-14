@@ -14,14 +14,16 @@ async function main() {
       .parse(process.argv)
       .args;
   
-    const items = await ComponentsFactory.getItemsLoader().loadItems();
-    let creationOrder = await handCashMinter.createItems(collectionId, items);
+    const itemsToCreate = await ComponentsFactory.getItemsLoader().loadItems();
+    let creationOrder = await handCashMinter.createItems(collectionId, itemsToCreate);
     // wait for collection to be created in the background
     while(creationOrder.status !== 'completed') {
         await sleep(1000);
         creationOrder = await handCashMinter.getOrder(creationOrder.id);
     }
-    console.log(`Items Minted: ${items.length}`);
+
+    const items = await handCashMinter.getOrderItems(creationOrder.id);
+    console.log(`Items Created`, items)
   }
   
 
