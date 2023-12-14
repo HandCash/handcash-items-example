@@ -34,8 +34,7 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 });
 
 (async () => {
-  const creationOrderResult = await handCashMinter.createCollection({
-    items: [{
+  const creationOrder = await handCashMinter.createCollection({
       name: 'HandCash Team Caricatures',
       description: 'A unique collection of caricatures of the HandCash team',
       mediaDetails: {
@@ -44,11 +43,10 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
           contentType: 'image/png'
         }
       }
-    }],
-    itemCreationOrderType: 'collection'
-  });
+    });
 
-  console.log(`Collection Created, collectionId: ${creationOrderResult.items[0].id}`);
+  const items = await handCashMinter.getOrderItems(creationOrder.id);
+  console.log(`Collection Created, collectionId: ${items[0].id}`);
 })();
 ```
 
@@ -80,69 +78,70 @@ const handCashMinter = HandCashMinter.fromAppCredentials({
 
   const collectionId = "657762fc2acbecc109d8c1fb";
 
-  const creationOrderResult = await handCashMinter.createItems({
-    items: [
-      {
-        user: "612cba70e108780b4f6817ad",
-        name: "Rafa",
-        rarity: "Mythic",
-        attributes: [
-          { name: "Edition", value: "Test", displayType: "string" },
-          { name: "Generation", value: "1", displayType: "string" },
-          { name: "Country", value: "Spain", displayType: "string" }
-        ],
-        mediaDetails: {
-          image: {
-            url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398977/items/jyn2qqyqyepqhqi9p661.webp",
-            imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
-            contentType: "image/webp"
-          }
-        },
-        color: "#bf9078",
-        quantity: 3
+const creationOrder = await handCashMinter.createItems(
+  collectionId,
+  [
+    {
+      user: "612cba70e108780b4f6817ad",
+      name: "Rafa",
+      rarity: "Mythic",
+      attributes: [
+        { name: "Edition", value: "Test", displayType: "string" },
+        { name: "Generation", value: "1", displayType: "string" },
+        { name: "Country", value: "Spain", displayType: "string" }
+      ],
+      mediaDetails: {
+        image: {
+          url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398977/items/jyn2qqyqyepqhqi9p661.webp",
+          imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
+          contentType: "image/webp"
+        }
       },
-      {
-        user: "6213a44bf2936f711c8d19d3",
-        name: "Alex",
-        rarity: "Mythic",
-        attributes: [
-          { name: "Edition", value: "Test", displayType: "string" },
-          { name: "Generation", value: "1", displayType: "string" },
-          { name: "Country", value: "Andorra", displayType: "string" }
-        ],
-        mediaDetails: {
-          image: {
-            url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
-            imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
-            contentType: "image/webp"
-          }
-        },
-        color: "#73c9ac",
-        quantity: 3
+      color: "#bf9078",
+      quantity: 3
+    },
+    {
+      user: "6213a44bf2936f711c8d19d3",
+      name: "Alex",
+      rarity: "Mythic",
+      attributes: [
+        { name: "Edition", value: "Test", displayType: "string" },
+        { name: "Generation", value: "1", displayType: "string" },
+        { name: "Country", value: "Andorra", displayType: "string" }
+      ],
+      mediaDetails: {
+        image: {
+          url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
+          imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/gh7tsn11svhx7z943znv.png",
+          contentType: "image/webp"
+        }
       },
-      {
-        name: "Brandon Bryant",
-        rarity: "Mythic",
-        attributes: [
-          { name: "Edition", value: "Test", displayType: "string" },
-          { name: "Generation", value: "2", displayType: "string" },
-          { name: "Country", value: "United States", displayType: "string" }
-        ],
-        mediaDetails: {
-          image: {
-            url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
-            imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
-            contentType: "image/webp"
-          }
-        },
-        color: "#adeaf5",
-        quantity: 1
-      }
-    ],
-    itemCreationOrderType: 'collectionItem'
-  });
+      color: "#73c9ac",
+      quantity: 3
+    },
+    {
+      name: "Brandon Bryant",
+      rarity: "Mythic",
+      attributes: [
+        { name: "Edition", value: "Test", displayType: "string" },
+        { name: "Generation", value: "2", displayType: "string" },
+        { name: "Country", value: "United States", displayType: "string" }
+      ],
+      mediaDetails: {
+        image: {
+          url: "https://res.cloudinary.com/handcash-iae/image/upload/v1702398906/items/da2qv0oqma0hs3gqevg7.webp",
+          imageHighResUrl: "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/edaoeseq43yqdbqwjzn4.png",
+          contentType: "image/webp"
+        }
+      },
+      color: "#adeaf5",
+      quantity: 1
+    }
+  ]);
 
-  console.log(`Items Minted: ${creationOrderResult.items.length}`);
+console.log(`Items order created, items are being created asynchronous`);
+const items = await handCashMinter.getOrderItems(creationOrder.id);
+console.log('Items created', items);
 })();
 
 ```
