@@ -75,8 +75,8 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                 attributes: this.getItemAttributes(itemData),
                 mediaDetails: {
                     image: {
-                        url: `${this.folderPath}/images/${itemData['image']}`,
-                        imageHighResUrl: itemData['cacheImage'] ? `${this.folderPath}/images/${itemData['cacheImage']}` : undefined,
+                        url: itemData['image'],
+                        imageHighResUrl: itemData['cacheImage'],
                         contentType: 'image/png',
                     },
                 },
