@@ -2,22 +2,44 @@ import {AbstractItemsLoader} from "./AbstractItemsLoader.js";
 import * as fs from "fs";
 import {handCashConfig} from "../Settings.js";
 import {Types} from "@handcash/handcash-connect";
+import pLimit from "p-limit";
 
 type Params = {
     folderPath: string;
+    imageService: any;
 }
 
 export class CoomBattlesItemsLoader extends AbstractItemsLoader {
     folderPath: string;
+    imageService: any;
 
-    constructor({folderPath}: Params) {
+    constructor({folderPath, imageService}: Params) {
         super();
         this.folderPath = folderPath;
+        this.imageService = imageService;
     }
 
-    async loadItems(): Promise<Types.CreateItemMetadata[]> {
-        const data = JSON.parse(fs.readFileSync(`${this.folderPath}/info.json`, 'utf8'));
-        return await Promise.all(data.map((item: any) => this.loadItemFromRawItemData(item)));
+    async loadItems() {
+        let data = JSON.parse(fs.readFileSync(`${this.folderPath}/info.json`, 'utf8'));
+        let items = data.map((item: any) => this.loadItemFromRawItemData(item))
+        items = await this.uploadItemImages(this.imageService, items);
+        return items; 
+    }
+    
+    async uploadItemImages(imageService: any, items: Types.CreateItemMetadata[]): Promise<Types.CreateItemMetadata[]> {
+        const limit = pLimit(5);
+        const uploadPromises = items.map(item => limit(() => this.uploadItemImage(imageService, item)));
+        return Promise.all(uploadPromises);
+    }
+    
+    async uploadItemImage(imageService: any, item: Types.CreateItemMetadata): Promise<Types.CreateItemMetadata> {
+        if(item.mediaDetails.image.url && !item.mediaDetails.image.url.startsWith('http')) {
+            item.mediaDetails.image.url = await imageService.uploadImage(item.mediaDetails.image.url);
+        }
+        if(item.mediaDetails.image.imageHighResUrl && !item.mediaDetails.image.imageHighResUrl.startsWith('http')) {
+            item.mediaDetails.image.imageHighResUrl = await imageService.uploadImage(item.mediaDetails.image.imageHighResUrl);
+        }
+        return item
     }
 
     async loadCollection(): Promise<Types.CreateCollectionMetadata> {
