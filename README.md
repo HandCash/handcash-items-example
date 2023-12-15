@@ -18,7 +18,13 @@ HANDCASH_APP_ID=<your-app-id>
 HANDCASH_APP_SECRET=<your-app-secret>
 HANDCASH_AUTH_TOKEN=<your-business-wallet-auth-token>
 
+HANDCASH_BASE_API_ENDPOINT=https://cloud.handcash.io
+CLOUDINARY_API_KEY=544588249773336
+CLOUDINARY_CLOUD_NAME=hn8pdtayf
+
 ```
+
+
 
 ## Create a collection
 

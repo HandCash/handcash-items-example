@@ -9,3 +9,8 @@ export const handCashConfig = {
     baseApiEndpoint: process.env.HANDCASH_BASE_API_ENDPOINT as string,
 }
 
+export const cloudinaryConfig = {
+    apiKey: process.env.CLOUDINARY_API_KEY as string,
+    apiSecret: process.env.CLOUDINARY_API_SECRET as string,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
+}
