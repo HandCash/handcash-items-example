@@ -67,23 +67,24 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
 
 
     private loadItemFromRawItemData(itemData: any): Types.ItemsMetadataWithQuantity {
+        if (!itemData['cacheImage']) {
+            throw new Error('High-resolution image is not supplied.');
+        }
         return {
-            item: {
                 name: itemData['name'],
                 user: itemData['user'] ? itemData['user'] : undefined,
                 rarity: itemData['rarity'],
                 attributes: this.getItemAttributes(itemData),
                 mediaDetails: {
                     image: {
-                        url: itemData['image'],
-                        imageHighResUrl: itemData['cacheImage'],
-                        contentType: 'image/png',
+                        url: `${this.folderPath}/images/${itemData['image']}`,
+                        imageHighResUrl: `${this.folderPath}/images/${itemData['cacheImage']}`,
+                        contentType: 'image/webp',
                     },
                 },
                 color: this.getColorFromElement(itemData['element']),
-            },
-            quantity: itemData['totalQuantity'],
-        };
+                quantity: itemData['totalQuantity'],
+            };
     }
 
     private getItemAttributes(itemData: any): Types.ItemAttributeMetadata[] {

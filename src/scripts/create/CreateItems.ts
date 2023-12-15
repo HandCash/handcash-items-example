@@ -1,6 +1,8 @@
 import {ComponentsFactory} from "../../ComponentsFactory.js";
 import {Argument, Command} from "commander";
 const handCashMinter = ComponentsFactory.getHandCashMinter();
+const ItemsLoader = ComponentsFactory.getItemsLoader();
+const ImageService = ComponentsFactory.getImageService();
 
 function sleep(ms: number) {
     return new Promise((resolve) => {
@@ -14,7 +16,9 @@ async function main() {
       .parse(process.argv)
       .args;
   
-    const itemsToCreate = await ComponentsFactory.getItemsLoader().loadItems();
+    let itemsToCreate = await ItemsLoader.loadItems();
+    itemsToCreate = await ItemsLoader.uploadItemImages(ImageService, itemsToCreate);
+    
     let creationOrder = await handCashMinter.createItemsOrder({ collectionId, items: itemsToCreate});
     // wait for collection to be created in the background
     let counter = 10;
