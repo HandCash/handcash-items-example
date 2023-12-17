@@ -34,7 +34,7 @@ export async function main() {
         batchNumber++;
     }
     console.log(`- ✅ All items inscribed`);
-    console.log('Run npm run getInscriptionOrder', order.id, 'to see the order details')
+    console.log('Run npm run GetInscriptionOrder', order.id, 'to see the order details')
     
 }
 
