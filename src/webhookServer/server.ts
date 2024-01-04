@@ -1,17 +1,16 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import handcashWebhookAuthentication from './handcashWebhookAuthentication.js';
+import {ComponentsFactory} from "../ComponentsFactory.js";
 import { itemListingPaymentCompletedHandler, itemsTransferredEventHandler}  from './eventHandlers/handlers.js';
 import { Types } from '@handcash/handcash-connect';
 
-
+const handCashConnectInstance = ComponentsFactory.getHandCashConnectInstance();
 
 const app = express();
 app.use(bodyParser.json());
 
 const consumeEvent = async (req: express.Request, res: express.Response) => {
-    const payload: Types.WebhookPayload = req.body;
-
+    const payload = handCashConnectInstance.getWebhookEvent(req);
     switch (payload.event) {
         case 'item_listing_payment_completed':
             await itemListingPaymentCompletedHandler(payload as Types.ItemListingPaymentCompletedEventPayload);
@@ -26,7 +25,7 @@ const consumeEvent = async (req: express.Request, res: express.Response) => {
     res.status(200).send('Event consumed successfully');
 };
 
-app.post('/', handcashWebhookAuthentication, consumeEvent);
+app.post('/', consumeEvent);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
