@@ -10,7 +10,9 @@ const app = express();
 app.use(bodyParser.json());
 
 const consumeEvent = async (req: express.Request, res: express.Response) => {
-    const payload = handCashConnectInstance.getWebhookEvent(req);
+    const signature = req.headers['handcash-signature'];
+    const body = req.body;
+    const payload = handCashConnectInstance.getWebhookEvent(signature, body);
     switch (payload.event) {
         case 'item_listing_payment_completed':
             await itemListingPaymentCompletedHandler(payload as Types.ItemListingPaymentCompletedEventPayload);
