@@ -1,26 +1,16 @@
 import express from 'express';
-import dotenv from "dotenv";
-import crypto from 'crypto';
-import {Types} from "@handcash/handcash-connect";
+import {ComponentsFactory} from "../ComponentsFactory.js";
+const handCashConnectInstance = ComponentsFactory.getHandCashConnectInstance();
 
-dotenv.config();
-const appSecret = process.env.HANDCASH_APP_SECRET || '';
+const handCashWebhookAuthentication = (req: express.Request, res: express.Response, next: express.NextFunction) => {
 
-
-const handcashWebhookAuthentication = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const signature = req.headers['handcash-signature'] as string;
-    const body: Types.WebhookPayload = req.body;
-    const fiveMinutesAgo = new Date(new Date().getTime() - (5 * 60000));
-    if (new Date(body.created) < fiveMinutesAgo) {
-        return res.status(401).send('Timestamp is too old');
-    }
-    const hmac = crypto.createHmac('sha256', appSecret);
-    hmac.update(JSON.stringify(body));
-    const generatedSignature = hmac.digest('hex');
-    if (generatedSignature !== signature) {
-        return res.status(401).send('Invalid signature');
-    }
+    try {
+        handCashConnectInstance.validateWebhookAuthentication(req);
+    } catch (e : any) {
+        console.log(e)
+        res.status(401).send(e.message);
+    };
     next();
 };
 
-export default handcashWebhookAuthentication;
+export default handCashWebhookAuthentication;
