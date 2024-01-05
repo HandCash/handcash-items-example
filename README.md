@@ -228,3 +228,29 @@ const handcashAccount = new HandCashConnect({
     console.log(`- ✅ Item transferred to ${destination}!`);
 })(); 
 ```
+
+
+## Webhook Events (beta)
+
+Webhook events are sent from HandCash Cloud to the webhook url that is configured for the current application. Option to configure the webhook url will come in the HandCash Developer Dashboard, however this feature is still in beta so please reach out to the team to set your applications webhook url.
+
+Webhooks payloads are signed using the handcash app secret and the signature is attached to the request header `handcash-signature`
+
+The signed payload is created by applying a SHA256 HMAC to the stringified body of the request, using the app secret as the key.
+
+The base webhook body is composed of
+
+| Property     | Type   | Description |
+|--------------|--------|-------------|
+| event        | 'item_listing_payment_completed' \| 'items_transferred' | Specifies the type of event that has occurred. |
+| applicationId| string | The unique identifier for the application. |
+| apiVersion   | string | The version of the API used. |
+| created      | string | The timestamp when the event was created. |
+| data         | Object | Domain data specific to the event. |
+
+## Event
+
+| Event                                        | Description |
+|----------------------------------------------|-------------|
+| ItemListingPaymentCompletedEventPayload      | Triggered when an item from the application is sold on Handcash Market. |
+| ItemsTransferredEventPayload                 | Triggered when an item is transferred from a user. |
