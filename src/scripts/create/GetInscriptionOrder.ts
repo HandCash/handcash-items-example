@@ -12,14 +12,12 @@ async function main() {
     console.log('- ⏳ Retrieving order...');
     const result = await handCashMinter.getOrder(orderId);
     console.log('============== Order ==============');
-    console.log({
-        id: result.id,
-        status: result.status,
-    });
+    console.log(result);
 
-    if (result.status !== 'completed') {
-        console.log('Order is not completed yet. Please wait a few seconds and try again.')
-        console.log('If order is still not completed after a few minutes, please contact support')
+    if (result.status === 'completed') {
+        console.log('===================================')
+        console.log('🎉 Order completed successfully!')
+        console.log(`run npm run GetOrderItems ${orderId} to get the items`);
         console.log('===================================')
     }
 }
