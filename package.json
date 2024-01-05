@@ -10,6 +10,7 @@
     "CreateItems": "tsc && node --no-warnings dist/scripts/create/CreateItems.js",
     "GetInventory": "tsc && node --no-warnings dist/scripts/getInventory.js",
     "GetOrderStatus": "tsc && node --no-warnings dist/scripts/create/GetInscriptionOrder.js",
+    "GetOrderItems": "tsc && node --no-warnings dist/scripts/create/GetOrderItems.js",
     "CreateItemsInBatches": "tsc && node --no-warnings dist/scripts/create/createItemBatch/CreateItemsInBatches.js",
     "CreateItemOrder": "tsc && node --no-warnings dist/scripts/create/createItemBatch/CreateItemOrder.js",
     "AddItemsToOrder": "tsc && node --no-warnings dist/scripts/create/createItemBatch/AddItemsToOrder.js",
@@ -48,7 +49,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@handcash/handcash-connect": "0.7.6",
+    "@handcash/handcash-connect": "0.7.7-alpha",
     "axios": "^1.6.2",
     "body-parser": "^1.20.2",
     "bsv-wasm": "^2.0.1",

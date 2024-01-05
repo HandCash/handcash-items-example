@@ -1,9 +1,9 @@
 import HandCashService from "./services/handcash/HandCashService.js";
+import { handCashConfig} from "./Settings.js";
 import {AbstractItemsLoader} from "./loaders/AbstractItemsLoader.js";
-import { HandCashItemsLoader } from "./loaders/HandCashItemsLoader.js";
+import {HandCashItemsLoader} from "./loaders/HandCashItemsLoader.js";
 import {HandCashMinter, Environments, Types, HandCashConnect} from "@handcash/handcash-connect";
-import {cloudinaryConfig, handCashConfig} from "./Settings.js";
- import CloudinaryImageService from "./services/image/CloudinaryImageService.js";
+
 
 export class ComponentsFactory {
     static getHandCashService(): HandCashService {
@@ -15,10 +15,6 @@ export class ComponentsFactory {
         return new HandCashItemsLoader({
             folderPath: './assets/handcash_test',
         });
-    }
-
-    static getImageService() {
-        return new CloudinaryImageService(cloudinaryConfig);
     }
 
     static getHandCashMinter(): HandCashMinter {
@@ -36,4 +32,12 @@ export class ComponentsFactory {
             env: Environments.prod,
         }).getAccountFromAuthToken(handCashConfig.authToken);
     }
+
+    static getHandCashConnectInstance() {
+        return new HandCashConnect({
+            appId: handCashConfig.appId,
+            appSecret: handCashConfig.appSecret,
+            env: Environments.prod,
+        });
+    };
 }
