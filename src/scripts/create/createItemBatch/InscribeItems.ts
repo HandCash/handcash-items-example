@@ -19,7 +19,7 @@ async function main() {
         order = await handCashMinter.getOrder(orderId);
       }
 
-      console.log('All items inscribed to create catalog, npm run createCatalog', order.id);
+      console.log('Run npm run GetInscriptionOrder', order.id, 'to see the order details')
   }
 
   async function inscribeItemsInBatches (order: any, batchNumber: number) {

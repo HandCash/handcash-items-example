@@ -19,6 +19,8 @@ async function main() {
         console.log('🎉 Order completed successfully!')
         console.log(`run npm run GetOrderItems ${orderId} to get the items`);
         console.log('===================================')
+    } else if (result.status === 'pendingInscriptions') {
+        console.log('Run npm run InscribeItems', orderId, 'to resume inscribing the items')
     }
 }
 

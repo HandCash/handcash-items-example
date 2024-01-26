@@ -17,6 +17,7 @@
     "CommitOrder": "tsc && node --no-warnings dist/scripts/create/createItemBatch/CommitOrder.js",
     "PayOrder": "tsc && node --no-warnings dist/scripts/create/createItemBatch/PayOrder.js",
     "CreateNextItemBatch": "tsc && node --no-warnings dist/scripts/create/createItemBatch/CreateNextItemBatch.js",
+    "InscribeItems": "tsc && node --no-warnings dist/scripts/create/createItemBatch/InscribeItems.js",
     "sendAllOrderItems": "tsc && node --no-warnings dist/scripts/util/sendAllOrderItems.js",
     "transferSingleItem": "tsc && node --no-warnings dist/scripts/transfer/TransferSingleItem.js",
     "test": "echo \"Error: no test specified\" && exit 1",

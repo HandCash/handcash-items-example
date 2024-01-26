@@ -12,29 +12,34 @@ export async function main() {
     .args;
 
     let order = await handCashMinter.createCollectionItemsOrder(collectionId);
-    const items = await ComponentsFactory.getItemsLoader().loadItems();
-    let totalQuantity = items.reduce((total, item) => total + item.quantity, 0);
-    await handCashMinter.addOrderItems({
-        orderId: order.id,
-        items: items,
-        itemCreationOrderType: 'collectionItem'
-    });
-    console.log(totalQuantity, 'items added to order');
-    order = await handCashMinter.commitOrder(order.id);
-    console.log('Order committed, pay the invoice here to continue', order.payment.paymentRequestUrl);
-    console.log(`- ⏳ Paying ${order.payment!.amountInUSD} USD to create all the items on-chain...`);
-    const paymentResult = await handCashMinter.payPaymentRequest(order.payment!.paymentRequestId);
-    console.log(`- ✅ Order paid. TransactionId: ${paymentResult.transactionId}`);
-
-    let batchNumber = 1;
-    while (order.pendingInscriptions > 0) {
-        console.log(`- ⏳ Inscribing batch number ${batchNumber}.\n${order.pendingInscriptions} pending inscriptions...`);
-        order = await handCashMinter.inscribeNextBatch(order.id);
-        order = await handCashMinter.getOrder(order.id);
-        batchNumber++;
+    try {
+        const items = await ComponentsFactory.getItemsLoader().loadItems();
+        let totalQuantity = items.reduce((total, item) => total + item.quantity, 0);
+        await handCashMinter.addOrderItems({
+            orderId: order.id,
+            items: items,
+            itemCreationOrderType: 'collectionItem'
+        });
+        console.log(totalQuantity, 'items added to order');
+        order = await handCashMinter.commitOrder(order.id);
+        console.log('Order committed, pay the invoice here to continue', order.payment.paymentRequestUrl);
+        console.log(`- ⏳ Paying ${order.payment!.amountInUSD} USD to create all the items on-chain...`);
+        const paymentResult = await handCashMinter.payPaymentRequest(order.payment!.paymentRequestId);
+        console.log(`- ✅ Order paid. TransactionId: ${paymentResult.transactionId}`);
+    
+        let batchNumber = 1;
+        while (order.pendingInscriptions > 0) {
+            console.log(`- ⏳ Inscribing batch number ${batchNumber}.\n${order.pendingInscriptions} pending inscriptions...`);
+            order = await handCashMinter.inscribeNextBatch(order.id);
+            order = await handCashMinter.getOrder(order.id);
+            batchNumber++;
+        }
+        console.log(`- ✅ All items inscribed`);
+        console.log('Run npm run GetInscriptionOrder', order.id, 'to see the order details')
+    } catch(error) {
+        console.error(error);
+        console.log('Run npm run GetInscriptionOrder', order.id, 'to see the order details')
     }
-    console.log(`- ✅ All items inscribed`);
-    console.log('Run npm run GetInscriptionOrder', order.id, 'to see the order details')
     
 }
 
@@ -46,4 +51,3 @@ export async function main() {
         console.error(e)
     }
 })();
-
