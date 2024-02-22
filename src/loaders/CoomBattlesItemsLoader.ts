@@ -96,6 +96,7 @@ export class CoomBattlesItemsLoader extends AbstractItemsLoader {
                 name: itemData['name'],
                 user: itemData['user'] ? itemData['user'] : undefined,
                 rarity: itemData['rarity'],
+                groupingValue: itemData['groupingValue'],
                 attributes: this.getItemAttributes(itemData),
                 mediaDetails: {
                     image: {
