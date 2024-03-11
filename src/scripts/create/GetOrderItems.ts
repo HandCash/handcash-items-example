@@ -2,6 +2,7 @@ import {Argument, Command} from "commander";
 import {ComponentsFactory} from "../../ComponentsFactory.js";
 
 const handCashMinter = ComponentsFactory.getHandCashMinter();
+const handcashAccount = ComponentsFactory.getHandCashAccount();
 
 async function main() {
     const [orderId] = new Command()
