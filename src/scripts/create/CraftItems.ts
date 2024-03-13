@@ -17,9 +17,13 @@ async function main() {
 
     // Burn 2 Rafa to Craft 1 Alex
     let burnOrderResult = await handCashMinter.burnAndCreateItemsOrder({
-      origins: itemsToBurn.map((item: any) => item.origin),
-      items: [itemToCreate],
-      collectionId: collectionId,
+      burn: {
+        origins: itemsToBurn.map((item: any) => item.origin),
+      },
+      issue: {
+        items: [itemToCreate],
+        collectionId: collectionId,
+      }
     });
 
     console.log(`Items Burnt:`, itemsToBurn.map((item: any) => item.origin));

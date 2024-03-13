@@ -9,7 +9,9 @@ async function main() {
       .args;
   
     let burnOrderResult = await handCashMinter.burnAndCreateItemsOrder({
-      origins: [origin],
+      burn: {
+        origins: [origin],
+      }
     });
     console.log(`Items Burnt:`, burnOrderResult);
   }

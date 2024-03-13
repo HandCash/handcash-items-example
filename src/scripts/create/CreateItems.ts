@@ -1,13 +1,6 @@
 import {ComponentsFactory} from "../../ComponentsFactory.js";
 import {Argument, Command} from "commander";
 const handCashMinter = ComponentsFactory.getHandCashMinter();
-const handcashService = ComponentsFactory.getHandCashService();
-
-function sleep(ms: number) {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  }
 
 async function main() {
     const [collectionId] = new Command()
