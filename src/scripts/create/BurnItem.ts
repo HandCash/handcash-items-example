@@ -4,7 +4,7 @@ const handCashMinter = ComponentsFactory.getHandCashMinter();
 
 async function main() {
     const [origin] = new Command()
-      .addArgument(new Argument('origin', 'The id of the collection where the items will be minted'))
+      .addArgument(new Argument('origin', 'The origin of the item to be burn'))
       .parse(process.argv)
       .args;
   
