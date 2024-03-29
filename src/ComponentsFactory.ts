@@ -21,6 +21,7 @@ export class ComponentsFactory {
         return HandCashMinter.fromAppCredentials({
             appId: handCashConfig.appId,
             authToken: handCashConfig.authToken,
+            appSecret: handCashConfig.appSecret,
             env: Environments.prod,
         });
     }
