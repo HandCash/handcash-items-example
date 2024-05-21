@@ -3,7 +3,6 @@ import {Types} from "@handcash/handcash-connect";
 export default async function onItemSoldEvent(payload: Types.ItemListingPaymentCompletedEventPayload) {
     console.log('----------------------------------')
     console.log('Item Listing Payment Completed');
-
     console.log('Item Transfer: ', payload.data.itemTransfer.id);
     console.log('Payment: ', payload.data.itemTransfer.payment.transactionId)
     console.log('Payment Amount: ', payload.data.itemTransfer.payment.amount, payload.data.itemTransfer.payment.currencyCode) 

@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {ComponentsFactory} from "../ComponentsFactory.js";
-import { itemListingPaymentCompletedHandler, itemsTransferredEventHandler}  from './eventHandlers/handlers.js';
+import { itemListingPaymentCompletedHandler, itemsTransferredEventHandler, itemsCreatedEventHandler}  from './eventHandlers/handlers.js';
 import { Types } from '@handcash/handcash-connect';
 
 const handCashConnectInstance = ComponentsFactory.getHandCashConnectInstance();
@@ -19,6 +19,9 @@ const consumeEvent = async (req: express.Request, res: express.Response) => {
             break;
         case 'items_transferred':
             await itemsTransferredEventHandler(payload as Types.ItemsTransferredEventPayload);
+            break;
+        case 'item_creation_order_completed':
+            await itemsCreatedEventHandler(payload as Types.ItemCreationEventPayload);
             break;
         default:
             console.log(`Unknown payload event: ${payload.event}`);
