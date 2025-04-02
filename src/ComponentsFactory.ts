@@ -1,8 +1,8 @@
 import HandCashService from "./services/handcash/HandCashService.js";
-import { handCashConfig} from "./Settings.js";
-import {AbstractItemsLoader} from "./loaders/AbstractItemsLoader.js";
-import {HandCashItemsLoader} from "./loaders/HandCashItemsLoader.js";
-import {HandCashMinter, Environments, Types, HandCashConnect} from "@handcash/handcash-connect";
+import { handCashConfig } from "./Settings.js";
+import { AbstractItemsLoader } from "./loaders/AbstractItemsLoader.js";
+import { Environments, HandCashConnect, HandCashMinter } from "@handcash/handcash-connect";
+import { CollectorCoinsItemsLoader } from "./loaders/CollectorCoinsItemsLoader.js";
 
 
 export class ComponentsFactory {
@@ -11,9 +11,8 @@ export class ComponentsFactory {
     }
 
     static getItemsLoader(): AbstractItemsLoader {
-        // 11 NFT example
-        return new HandCashItemsLoader({
-            folderPath: './assets/handcash_test',
+        return new CollectorCoinsItemsLoader({
+            folderPath: './assets/collectors_coin',
         });
     }
 
@@ -25,11 +24,11 @@ export class ComponentsFactory {
         });
     }
 
-    static getHandCashAccount() {
+    static getHandCashAccount(authToken?: string) {
         return new HandCashConnect({
             appId: handCashConfig.appId,
-            appSecret: handCashConfig.appSecret,
+            appSecret:  handCashConfig.appSecret,
             env: Environments.prod,
-        }).getAccountFromAuthToken(handCashConfig.authToken);
+        }).getAccountFromAuthToken(authToken ?? handCashConfig.authToken);
     }
 }
