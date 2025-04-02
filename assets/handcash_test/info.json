@@ -6,10 +6,10 @@
       "cacheImage": "https://res.cloudinary.com/handcash-iae/image/upload/v1697465892/items/zq0lupxoj8id1uedgz2h.png",
       "quantity": 3, 
       "rarity": "Mythic",
-      "user": "612cba70e108780b4f6817ad",
       "name": "Rafa",
       "country": "Spain",
-      "contentType": "image/webp"
+      "contentType": "image/webp",
+      "groupingValue": "Mythic-Rafa"
     },
     {
       "edition": "Test",
@@ -19,9 +19,9 @@
       "quantity": 3,
       "rarity": "Mythic",
       "name": "Alex",
-      "user": "6213a44bf2936f711c8d19d3",
       "country": "Andorra",
-      "contentType": "image/webp"
+      "contentType": "image/webp",
+      "groupingValue": "Mythic-Alex"
     },
     {
       "edition": "Test",
@@ -32,7 +32,8 @@
       "quantity": 1,
       "rarity": "Mythic",
       "country": "United States",
-      "contentType": "image/webp"
+      "contentType": "image/webp",
+      "groupingValue": "Mythic-Brandon"
     }
   ]
   

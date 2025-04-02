@@ -12,11 +12,16 @@ async function main() {
     console.log('- ⏳ Retrieving order...');
     const result = await handCashMinter.getOrder(orderId);
     console.log('============== Order ==============');
-    console.log(JSON.stringify(result, null, 2));
+    console.log(result);
 
-    const items = await handCashMinter.getOrderItems(orderId);
-    console.log('============== Items ==============');
-    console.log(JSON.stringify(items, null, 2));
+    if (result.status === 'completed') {
+        console.log('===================================')
+        console.log('🎉 Order completed successfully!')
+        console.log(`run npm run GetOrderItems ${orderId} to get the items`);
+        console.log('===================================')
+    } else if (result.status === 'pendingInscriptions') {
+        console.log('Run npm run InscribeItems', orderId, 'to resume inscribing the items')
+    }
 }
 
 (async () => {

@@ -19,12 +19,12 @@ async function main() {
         order = await handCashMinter.getOrder(orderId);
       }
 
-      console.log('All items inscribed to create catalog, npm run createCatalog', order.id);
+      console.log('Run npm run GetInscriptionOrder', order.id, 'to see the order details')
   }
 
   async function inscribeItemsInBatches (order: any, batchNumber: number) {
     const limit = pLimit(4);
-    await Promise.allSettled(Array(Math.floor(order.pendingInscriptions/ 38)).fill((0)).map(() => limit(async () => {
+    await Promise.allSettled(Array(8).fill((0)).map(() => limit(async () => {
         console.log('Running batch', batchNumber)
         batchNumber = batchNumber + 1;
         return handCashMinter.inscribeNextBatch(order.id);

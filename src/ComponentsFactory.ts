@@ -20,6 +20,7 @@ export class ComponentsFactory {
         return HandCashMinter.fromAppCredentials({
             appId: handCashConfig.appId,
             authToken: handCashConfig.authToken,
+            appSecret: handCashConfig.appSecret,
             env: Environments.prod,
         });
     }
@@ -31,4 +32,12 @@ export class ComponentsFactory {
             env: Environments.prod,
         }).getAccountFromAuthToken(authToken ?? handCashConfig.authToken);
     }
+
+    static getHandCashConnectInstance() {
+        return new HandCashConnect({
+            appId: handCashConfig.appId,
+            appSecret: handCashConfig.appSecret,
+            env: Environments.prod,
+        });
+    };
 }
